@@ -1,12 +1,5 @@
 <?php
-session_start();
-if (isset($_SESSION['login_status'])) { //isset untuk mengecek variabel
-    if ($_SESSION['login_status'] == 1){
-        echo "<script>alert('Login Berhasil dan Selamat Datang')</script>";
-        session_destroy();
-    }
-    # code...
-}
+require 'proses/session.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,6 +27,8 @@ if (isset($_SESSION['login_status'])) { //isset untuk mengecek variabel
     <link href="vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
     <!-- DataTables Responsive CSS -->
     <link href="vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+    <!-- Flatpickr js -->
+    <link href="assets/flatpickr.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="dist/css/sb-admin-2.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="assets/sweetalert/sweetalert.css">

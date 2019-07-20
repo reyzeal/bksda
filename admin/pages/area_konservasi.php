@@ -23,7 +23,7 @@ $no = 1;
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <button class="btn btn-primary" id="tambah-area_konservasi"><span class="fa fa-plus"></span> Tambah Area Konservasi (Objek Wisata)</button>
-                    <button class="btn btn-success" id="tambah_info_area_konservasi"><span class="fa fa-plus"></span> Tambah Info Detail Area Konservasi</button>
+<!--                    <button class="btn btn-success" id="tambah_info_area_konservasi"><span class="fa fa-plus"></span> Tambah Info Detail Area Konservasi</button>-->
                     <!-- <a href="index.php?page=detail_konservasi" class="btn btn-warning"><i class="fa fa-book"></i> Detail Area Konservasi </a> -->
                 </div>
                 <!-- /.panel-heading -->

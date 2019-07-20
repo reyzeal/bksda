@@ -3,11 +3,11 @@
  * Code by Reyzeal
  * Jumat, 19 Juli 2019
  *
- * module Check Landing
+ * module checking Session Login
  */
 session_start();
 if(isset($_SESSION['login_status']) && $_SESSION['login_status']){
-    header('Location: /admin');
+
 }else{
-    header('Location: /pengunjung');
+    header('Location: /admin/login.php');
 }

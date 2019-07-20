@@ -3,11 +3,15 @@
  * Code by Reyzeal
  * Jumat, 19 Juli 2019
  *
- * module Check Landing
+ * module logout
+ *      Alur Redirect:
+ *      Logout -> pengunjung
+ *      Guest  -> login
  */
 session_start();
 if(isset($_SESSION['login_status']) && $_SESSION['login_status']){
-    header('Location: /admin');
-}else{
+    session_destroy();
     header('Location: /pengunjung');
+}else{
+    header('Location: /admin/login.php');
 }

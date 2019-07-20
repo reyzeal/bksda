@@ -219,7 +219,7 @@
                 </li>
                 <li class="divider"></li>
                 <li>
-                  <a href="../../bksda/pengunjung"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                  <a href="/admin/logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                 </li>
             </ul>
             <!-- /.dropdown-user -->
@@ -243,6 +243,9 @@
                 </li> -->
                 <li>
                     <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Home Admin</a>
+                </li>
+                <li>
+                    <a href="index.php?page=agenda"><i class="fa fa-th fa-fw"></i> Agenda</a>
                 </li>
                 <li>
                     <a href="index.php?page=area_konservasi"><i class="fa fa-th fa-fw"></i> Area Konservasi</a>

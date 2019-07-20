@@ -5,13 +5,9 @@ require '../konfigurasi/koneksi.php';
 $email = $_POST ['email'];
 $pass = $_POST ['password'];
 
-$query = "SELECT * FROM akun WHERE email='$email' AND password='$pass'"; //query untuk mengecek email dan password 
+$status = count($DATABASE->select("SELECT * FROM akun WHERE email = '$email' AND password = '$pass'"));
 
-$result = mysqli_query($con, $query); //eksekusi query
-
-$num = mysqli_num_rows($result);
-
-if ($num>0) {
+if ($status>0) {
 	//login berhasil
 	header('location:../index.php');
 	$_SESSION['login_status'] = 1;
