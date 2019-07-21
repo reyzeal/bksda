@@ -21,7 +21,7 @@ else if (isset($_POST['edit'])) {
 	$id = $_POST['id'];
 	$nama_kategori = $_POST['nama_kategori'];
 
-	$sql = "UPDATE kategori SET nama_kategori='$nama_kategori' WHERE id='$id'";
+	$sql = "UPDATE kategori SET nama_kategori='$nama_kategori' WHERE id=$id";
 
 	$res = mysqli_query($con, $sql);
 

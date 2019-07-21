@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 	$res_obyek_wisata = mysqli_query($con, $query_obyek_wisata);
 
 	
-	$query_detail_wisata = "SELECT detail_obyek_wisata.id_wisata, fauna.nama_fauna, detail_obyek_wisata.jumlah_fauna FROM detail_obyek_wisata INNER JOIN fauna ON fauna.id = detail_obyek_wisata.id_fauna WHERE detail_obyek_wisata.id_wisata = '$id'";
+	$query_detail_wisata = "SELECT detail_obyek_wisata.id,detail_obyek_wisata.id_wisata, fauna.nama_fauna, detail_obyek_wisata.jumlah_fauna FROM detail_obyek_wisata INNER JOIN fauna ON fauna.id = detail_obyek_wisata.id_fauna WHERE detail_obyek_wisata.id_wisata = '$id'";
 
 	$res_detail_wisata = mysqli_query($con, $query_detail_wisata);
 

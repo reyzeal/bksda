@@ -24,3 +24,7 @@ $res_kategori = mysqli_query($con, $query_kategori);
   <div class="row">
       <div id="chartContainer" style="height: 370px; max-width: 920px; margin: 0px auto;"></div>
   </div>
+    <div class="row py-5">
+        <p>Total Kematian :<?=$total_kematian;?></p>
+        <p>Total Penambahan :<?=$total_penambahan;?></p>
+    </div>

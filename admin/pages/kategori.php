@@ -123,7 +123,7 @@ $no = 1;
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" name="simpan" id="button_submit">Save</button>
+        <button type="submit" class="btn btn-primary" name="edit">Save</button>
     </div>
 </form>
 

@@ -1,12 +1,16 @@
 <?php
-require_once 'konfigurasi/koneksi.php';
+require_once 'konfigurasi/DB.php';
 
-$query = "SELECT penyebaran.lokasi_penyebaran, kematian_fauna.*, fauna.nama_fauna FROM kematian_fauna INNER JOIN penyebaran ON kematian_fauna.id_penyebaran = penyebaran.id INNER JOIN fauna ON penyebaran.id_fauna = fauna.id ORDER BY kematian_fauna.tanggal_kematian DESC";
-$res = mysqli_query($con, $query);
+$query = "SELECT kematian_fauna.id,kematian_fauna.tanggal_kematian,fauna.nama_fauna,ow.lokasi,kematian_fauna.alasan,kematian_fauna.jumlah_kematian FROM kematian_fauna 
+          INNER JOIN detail_obyek_wisata on kematian_fauna.id_penyebaran=detail_obyek_wisata.id
+          INNER JOIN obyek_wisata ow on detail_obyek_wisata.id_wisata = ow.id
+          INNER JOIN fauna on detail_obyek_wisata.id_fauna = fauna.id";
+//$res = mysqli_query($con, $query);
 
-$query_penyebaran = "SELECT penyebaran.*, fauna.nama_fauna FROM penyebaran INNER JOIN fauna ON penyebaran.id_fauna = fauna.id";
-$res_penyebaran= mysqli_query($con, $query_penyebaran);
-
+$query_penyebaran = "SELECT * FROM obyek_wisata";
+//$res_penyebaran= mysqli_query($con, $query_penyebaran);
+$data = $DATABASE->select($query_penyebaran);
+$kematian = $DATABASE->select($query);
 $no = 1;
 
 ?>
@@ -32,7 +36,7 @@ $no = 1;
                             <tr>
                                 <th>No</th>
                                 <th>Tanggal</th>
-																<th>Nama Fauna</th>
+                                <th>Nama Fauna</th>
                                 <th>Lokasi Kematian Fauna </th>
                                 <th>Alasan Kematian Fauna</th>
                                 <th>Jumlah Fauna</th>
@@ -40,40 +44,27 @@ $no = 1;
                             </tr>
                         </thead>
                         <tbody>
-                        	<?php while ($data = mysqli_fetch_assoc($res)) {
-                             ?>
-                             <tr class="odd gradeX">
-                                <td><?php echo $no++; ?></td>
-                                <td><?php echo $data["tanggal_kematian"]; ?></td>
-                                <td><?php echo $data["nama_fauna"]; ?></td>
-                                <td><?php echo $data["lokasi_penyebaran"]; ?></td>
-                                <td><?php echo $data["alasan"]; ?></td>
-                                <td><?php echo $data ["jumlah_kematian"]; ?></td>
-                                <!-- <td width="150">
-                                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <?php
+                        $i = 0;
+                        foreach ($kematian as $x){
+                            $i++;
+                            echo "<tr>
+                                <td>$i</td>
+                                <td>$x->tanggal_kematian</td>
+                                <td>$x->nama_fauna</td>
+                                <td>$x->lokasi</td>
+                                <td>$x->alasan</td>
+                                <td>$x->jumlah_kematian</td>
+                            </tr>";
+                        }
+                        ?>
+                       </tbody>
+                    </table>
+                   <!-- /.table-responsive -->
 
-                                   <a href="proses/detail_obyek_wisata.php?id=<?php echo $data['id']; ?>" class="btn btn-success btn-sm detail_obyek_wisata"><i class="fa fa-book"></i></a>
-
-                                   <a href="proses/hapus_konservasi.php?id=<?php echo $data['id']; ?>" class="btn btn-danger btn-sm hapus-konservasi">
-                                       <span class="fa fa-trash"></span>
-                                   </a>
-
-																	 <form action="laporan/cetakareakonservasi.php" method="POST">
-																			<input type="hidden" name="id" value="<?php echo $data['id']; ?>">
-																			<button type="submit" name="button" class="btn btn-primary btn-sm"><i class="fa fa-print"></i> </button>
-																	 </form>
-
-                               </div>
-                           </td> -->
-                       </tr>
-                       <?php } ?>
-                   </tbody>
-               </table>
-               <!-- /.table-responsive -->
-
-           </div>
+                </div>
            <!-- /.panel-body -->
-       </div>
+        </div>
        <!-- /.panel -->
    </div>
 </div>
@@ -89,27 +80,35 @@ $no = 1;
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form style="" role="form" method="POST" action="proses/simpan_kematian.php">
+      <form style="" role="form" method="POST" action="proses/simpan_kematian2.php">
         <div class="modal-body" style="height: 100%;">
-          <div class="form-group">
-            <label>Nama Lokasi Penyebaran</label>
-            <select name="id_penyebaran" class="form-control">
-              <option>Pilih Lokasi</option>
-              <?php
-                    while ($data = mysqli_fetch_assoc($res_penyebaran)) {
-                        echo '<option value="' . $data['id'] . '">' . $data['lokasi_penyebaran'].' - '.$data['nama_fauna']. '</option>';
-                    }
-                 ?>
-            </select>
-          </div>
-					<div class="form-group">
-            <label>Alasan Kematian</label>
-						<textarea class="form-group" rows="8" cols="88" name="alasan"></textarea>
-          </div>
-          <div class="form-group">
-            <label>Jumlah Fauna</label>
-            <input class="form-control" name="jumlah_fauna" type="text" required="">
-          </div>
+              <div class="form-group">
+                <label>Nama Lokasi Penyebaran</label>
+                  <select name="id_penyebaran" class="form-control">
+                      <?php
+                      foreach ($data as $x){
+                          echo "<option value='$x->id'>$x->lokasi</option>";
+                      }
+                      ?>
+                  </select>
+              </div>
+              <div class="form-group">
+                  <label>Fauna</label>
+                  <select name="fauna_penyebaran" class="form-control">
+                  </select>
+              </div>
+              <div class="form-group">
+                  <label>Waktu</label>
+                  <input class="form-control" id="waktu" name="waktu" type="date" required="">
+              </div>
+              <div class="form-group">
+                  <label>Jumlah Fauna</label>
+                  <input class="form-control" name="jumlah_fauna" type="text" required="">
+              </div>
+              <div class="form-group">
+                  <label>Alasan</label>
+                  <textarea class="form-control" name="alasan" required=""></textarea>
+              </div>
         </div>
 
 				<input type="hidden" name="status" value="kematian">
@@ -123,15 +122,45 @@ $no = 1;
     </div>
   </div>
 </div>
-
+<script src="/admin/js/flatpickr.min.js"></script>
+<script>
+    flatpickr('#waktu', {
+        enableTime:true
+    });
+</script>
 <script>
     $(document).ready(function() {
         $('#dataTables-example').DataTable({
             responsive: true
         });
-
+        function retrieve_fauna(){
+            var id = $('[name=id_penyebaran]').val();
+            $.ajax({
+                url : '/admin/proses/detail_obyek_wisata.php?id='+id,
+                success:function (msg) {
+                    str = '';
+                    if(msg.data_fauna.length > 0){
+                        $('[name=fauna_penyebaran]').parent().show();
+                        $('[name=waktu]').parent().show();
+                        $('[name=jumlah_fauna]').parent().show();
+                        $('[name=alasan]').parent().show();
+                        for(let i=0;i<msg.data_fauna.length;i++){
+                            str+= '<option value="'+msg.data_fauna[i].id+'">'+msg.data_fauna[i].nama_fauna+'</option>';
+                        }
+                    }else{
+                        $('[name=fauna_penyebaran]').parent().hide();
+                        $('[name=waktu]').parent().hide();
+                        $('[name=jumlah_fauna]').parent().hide();
+                        $('[name=alasan]').parent().hide();
+                    }
+                    $('[name=fauna_penyebaran]').html(str);
+                }
+            });
+        }
+        $('[name=id_penyebaran]').on('change',retrieve_fauna);
         $('#tambah-kematian').click(function(){
             $('#modal-tambah-kematian').modal('show');
+            retrieve_fauna();
         });
 
         $('.hapus-konservasi').click(function(e){

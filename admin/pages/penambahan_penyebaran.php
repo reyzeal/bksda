@@ -1,12 +1,12 @@
 <?php
-require_once 'konfigurasi/koneksi.php';
+require_once 'konfigurasi/DB.php';
 
 $query = "SELECT penyebaran.lokasi_penyebaran, penambahan_fauna.*, fauna.nama_fauna FROM penambahan_fauna INNER JOIN penyebaran ON penambahan_fauna.id_penyebaran = penyebaran.id INNER JOIN fauna ON penyebaran.id_fauna = fauna.id ORDER BY penambahan_fauna.tanggal_penambahan DESC";
-$res = mysqli_query($con, $query);
+//$res = mysqli_query($con, $query);
 
-$query_penyebaran = "SELECT penyebaran.*, fauna.nama_fauna FROM penyebaran INNER JOIN fauna ON penyebaran.id_fauna = fauna.id";
-$res_penyebaran= mysqli_query($con, $query_penyebaran);
-
+$query_penyebaran = "SELECT * FROM obyek_wisata";
+//$res_penyebaran= mysqli_query($con, $query_penyebaran);
+$data = $DATABASE->select($query_penyebaran);
 $no = 1;
 
 ?>
@@ -32,44 +32,19 @@ $no = 1;
                             <tr>
                                 <th>No</th>
                                 <th>Tanggal</th>
-																<th>Nama Fauna</th>
+                                <th>Nama Fauna</th>
                                 <th>Lokasi Kematian Fauna </th>
                                 <th>Jumlah Fauna</th>
                                 <!-- <th>Action</th> -->
                             </tr>
                         </thead>
                         <tbody>
-                        	<?php while ($data = mysqli_fetch_assoc($res)) {
-                             ?>
-                             <tr class="odd gradeX">
-                                <td><?php echo $no++; ?></td>
-                                <td><?php echo $data["tanggal_penambahan"]; ?></td>
-                                <td><?php echo $data["nama_fauna"]; ?></td>
-                                <td><?php echo $data["lokasi_penyebaran"]; ?></td>
-                                <td><?php echo $data ["jumlah_penambahan"]; ?></td>
-                                <!-- <td width="150">
-                                    <div class="btn-group" role="group" aria-label="Basic example">
 
-                                   <a href="proses/detail_obyek_wisata.php?id=<?php echo $data['id']; ?>" class="btn btn-success btn-sm detail_obyek_wisata"><i class="fa fa-book"></i></a>
-
-                                   <a href="proses/hapus_konservasi.php?id=<?php echo $data['id']; ?>" class="btn btn-danger btn-sm hapus-konservasi">
-                                       <span class="fa fa-trash"></span>
-                                   </a>
-
-																	 <form action="laporan/cetakareakonservasi.php" method="POST">
-																			<input type="hidden" name="id" value="<?php echo $data['id']; ?>">
-																			<button type="submit" name="button" class="btn btn-primary btn-sm"><i class="fa fa-print"></i> </button>
-																	 </form>
-
-                               </div>
-                           </td> -->
-                       </tr>
-                       <?php } ?>
-                   </tbody>
-               </table>
+                        </tbody>
+                    </table>
                <!-- /.table-responsive -->
 
-           </div>
+                </div>
            <!-- /.panel-body -->
        </div>
        <!-- /.panel -->
@@ -92,19 +67,25 @@ $no = 1;
           <div class="form-group">
             <label>Nama Lokasi Penyebaran</label>
             <select name="id_penyebaran" class="form-control">
-              <option>Pilih Lokasi</option>
               <?php
-                    while ($data = mysqli_fetch_assoc($res_penyebaran)) {
-                        echo '<option value="' . $data['id'] . '">' . $data['lokasi_penyebaran'].' - '.$data['nama_fauna']. '</option>';
-                    }
-                 ?>
+                foreach ($data as $x){
+                    echo "<option value='$x->id'>$x->lokasi</option>";
+                }
+              ?>
             </select>
           </div>
-
+            <div class="form-group">
+                <label>Waktu</label>
+                <input class="form-control" name="waktu" type="date" required="">
+            </div>
           <div class="form-group">
             <label>Jumlah Fauna</label>
             <input class="form-control" name="jumlah_fauna" type="text" required="">
           </div>
+            <div class="form-group">
+                <label>Alasan</label>
+                <textarea class="form-control" name="alasan" required=""></textarea>
+            </div>
         </div>
 
 				<input type="hidden" name="status" value="penambahan">
@@ -118,7 +99,12 @@ $no = 1;
     </div>
   </div>
 </div>
+<script src="/admin/js/flatpickr.min.js"></script>
+<script>
+    flatpickr('[name=waktu]', {
 
+    });
+</script>
 <script>
     $(document).ready(function() {
         $('#dataTables-example').DataTable({

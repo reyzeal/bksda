@@ -259,6 +259,13 @@
                 <li>
                     <a href="index.php?page=penyebaran"><i class="fa fa-th fa-fw"></i> Penyebaran</a>
                 </li>
+                <?php
+                    if($AUTH->isPrivilege('kepala'))
+                    echo "<li>
+                        <a href=\"index.php?page=akun\"><i class=\"fa fa-th fa-fw\"></i> Akun </a>
+                    </li>";
+                ?>
+
                 <!-- <li>
                     <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">

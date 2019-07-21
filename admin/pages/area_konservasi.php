@@ -22,7 +22,7 @@ $no = 1;
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <button class="btn btn-primary" id="tambah-area_konservasi"><span class="fa fa-plus"></span> Tambah Area Konservasi (Objek Wisata)</button>
+                    <button class="btn btn-primary" id="tambah-area_konservasi"><span class="fa fa-plus"></span> Tambah Konservasi</button>
 <!--                    <button class="btn btn-success" id="tambah_info_area_konservasi"><span class="fa fa-plus"></span> Tambah Info Detail Area Konservasi</button>-->
                     <!-- <a href="index.php?page=detail_konservasi" class="btn btn-warning"><i class="fa fa-book"></i> Detail Area Konservasi </a> -->
                 </div>
@@ -64,7 +64,7 @@ $no = 1;
                                        <span class="fa fa-edit"></span>
                                    </button>
 
-                                   <a href="proses/detail_obyek_wisata.php?id=<?php echo $data['id']; ?>" class="btn btn-success btn-sm detail_obyek_wisata"><i class="fa fa-book"></i></a>
+                                   <a href="index.php?page=detail_konservasi2&id=<?php echo $data['id']; ?>" class="btn btn-success btn-sm"><i class="fa fa-book"></i></a>
 
                                    <a href="proses/hapus_konservasi.php?id=<?php echo $data['id']; ?>" class="btn btn-danger btn-sm hapus-konservasi">
                                        <span class="fa fa-trash"></span>
@@ -157,29 +157,30 @@ $no = 1;
         </button>
         </div>
         <form style="" role="form" method="POST" action="proses/simpan_konservasi.php">
-          <div class="modal-body" style="height: 100%;">
-            <div class="form-group">
-                <label>Nama Konservasi (Objek Wisata)</label>
-                <input class="form-control" name="nama_wisata" type="text" required="">
-            </div>
-            <div class="form-group">
-                <label>Lokasi</label>
-                <input class="form-control" name="lokasi" type="text" required="">
-            </div>
-            <div class="form-group">
-                <label>Latitude</label>
-                <input class="form-control" name="latitude" type="text" required="" id="latitude" readonly="">
-            </div>
-            <div class="form-group">
-                <label>Longitude</label>
-                <input class="form-control" name="longitude" type="text" required="" id="longitude" readonly="">
-            </div>
-              <div id="map"></div>
-            </div>
+              <div class="modal-body" style="height: 100%;">
+                <div class="form-group">
+                    <label>Nama Konservasi (Objek Wisata)</label>
+                    <input class="form-control" name="nama_wisata" type="text" required="">
+                </div>
+                <div class="form-group">
+                    <label>Lokasi</label>
+                    <input class="form-control" name="lokasi" type="text" required="">
+                </div>
+                <div class="form-group">
+                    <label>Latitude</label>
+                    <input class="form-control" name="latitude" type="text" required="" id="latitude" readonly="">
+                </div>
+                <div class="form-group">
+                    <label>Longitude</label>
+                    <input class="form-control" name="longitude" type="text" required="" id="longitude" readonly="">
+                </div>
+                  <div id="map"></div>
+              </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary" name="simpan">Save</button>
             </div>
+
         </form>
 
     </div>
