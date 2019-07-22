@@ -1,6 +1,7 @@
 <?php
 require 'proses/session.php';
 require 'proses/persebaran.php';
+$tahun = $DATABASE->select("SELECT YEAR(waktu) FROM kematian_fauna GROUP BY YEAR(waktu)");
 ?>
 <!DOCTYPE html>
 <html lang="en">
