@@ -1,7 +1,7 @@
 <?php
 require 'proses/session.php';
 require 'proses/persebaran.php';
-$tahun = $DATABASE->select("SELECT YEAR(waktu) FROM kematian_fauna GROUP BY YEAR(waktu)");
+$tahun = $DATABASE->select("SELECT YEAR(tanggal_kematian) as tahun FROM kematian_fauna GROUP BY YEAR(tanggal_kematian)");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -93,7 +93,14 @@ $tahun = $DATABASE->select("SELECT YEAR(waktu) FROM kematian_fauna GROUP BY YEAR
     	animationEnabled: true,
     	theme: "light2",
     	title: {
-    		text: "Data Persebaran Fauna"
+    	    <?php
+                if(isset($_GET['tahun'])){
+                    echo "text: \"Data Persebaran Fauna Tahun $_GET[tahun]\"";
+                }else{
+                    echo "text: \"Data Persebaran Fauna 1 Tahun Terakhir\"";
+                };
+            ?>
+
     	},
     	axisX: {
     		valueFormatString: "MMM"
@@ -193,7 +200,6 @@ $tahun = $DATABASE->select("SELECT YEAR(waktu) FROM kematian_fauna GROUP BY YEAR
 <body>
 
     <div id="wrapper">
-
         <?php
         	include 'section/nav.php';
 

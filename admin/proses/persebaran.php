@@ -24,7 +24,7 @@ if(!$tahun){
         $hasil[] = $temp;
     }
 }else{
-    for($i=1;$i<=12;$i++){
+    for($i=0;$i<12;$i++){
         $j = $i+1;
         $year = $tahun;
         $month = $i;
@@ -52,7 +52,7 @@ if(!$tahun){
 function kematian(){
     global $hasil;
     $string = '';
-    if(isset($_GET['tahun'])){
+    if(isset($_GET['tahun']) && $_GET['tahun'] ){
         foreach ($hasil as $x){
             $m = $x['date'][0];
             $y = $x['date'][1];
@@ -71,7 +71,7 @@ function kematian(){
 function penambahan(){
     global $hasil;
     $string = '';
-    if(isset($_GET['tahun'])){
+    if(isset($_GET['tahun']) && $_GET['tahun']){
         foreach ($hasil as $x){
             $m = $x['date'][0];
             $y = $x['date'][1];

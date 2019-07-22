@@ -34,6 +34,7 @@ class DB{
     }
     public function select($sql){
         $result = $this->connection->query($sql);
+        if(!$result) die($this->connection->error);
         $data = [];
         while ($row = $result->fetch_object()){
             $data[] = $row;
