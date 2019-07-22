@@ -227,7 +227,7 @@ $no = 1;
                         </div>
                         <input class="form-control" name="gambar" type="file" accept="image/*" required>
                     </div>
-                    <div id="map2"></div>
+                    <div id="map2" class="w-100" style="height: 400px;"></div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -333,27 +333,64 @@ $no = 1;
 
 <script>
     var map;
+    var map2;
     var marker;
+    var marker2;
 
     function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
             center: {lat: -7.747270, lng: 110.355382},
             zoom: 12
         });
+        map2 = new google.maps.Map(document.getElementById('map2'), {
+            //center: {lat: parseFloat($(this).attr('latitude')), lng: parseFloat($(this).attr('longitude'))},
+            center: {lat: -7.747270, lng: 110.355382},
+            zoom: 12
+        });
+        var pos = new google.maps.LatLng(-7.747270,110.355382);
+        marker = new google.maps.Marker({
+            position: pos,
+            map: map,
+            //label : {text:'$marker->jumlah',fontFamily:'serif',color:'white',fontSize:'14px',align:'center',width:'60px'},
+        });
+        marker2 = new google.maps.Marker({
+            position: pos,
+            map: map2,
+            //label : {text:'$marker->jumlah',fontFamily:'serif',color:'white',fontSize:'14px',align:'center',width:'60px'},
+        });
         google.maps.event.addListener(map,'center_changed', function() {
             document.getElementById('latitude').value = map.getCenter().lat();
             document.getElementById('longitude').value = map.getCenter().lng();
+            posChanged = new google.maps.LatLng(map.getCenter().lat(),map.getCenter().lng());
+            marker.setPosition(posChanged);
         });
-        $('<div/>').addClass('centerMarker').appendTo(map.getDiv())
-             //do something onclick
-         .click(function(){
-            var that=$(this);
-            if(!that.data('win')){
-                // that.data('win',new google.maps.InfoWindow({content:'this is the center'}));
-                that.data('win').bindTo('position',map,'center');
-            }
-            that.data('win').open(map);
-         });
+        google.maps.event.addListener(map2,'center_changed', function() {
+            $('#modal-edit-area_konservasi [name=latitude]').val(map2.getCenter().lat());
+            $('#modal-edit-area_konservasi [name=longitude]').val(map2.getCenter().lng());
+            posChanged = new google.maps.LatLng(map2.getCenter().lat(),map2.getCenter().lng());
+            marker2.setPosition(posChanged);
+        });
+        google.maps.event.addListener(map,'click', function(event) {
+            document.getElementById('latitude').value = event.latLng.lat();
+            document.getElementById('longitude').value = event.latLng.lng();
+            marker.setPosition(event.latLng);
+        });
+        google.maps.event.addListener(map2,'click', function(event) {
+            $('#modal-edit-area_konservasi [name=latitude]').val(event.latLng.lat());
+            $('#modal-edit-area_konservasi [name=longitude]').val(event.latLng.lng());
+            marker2.setPosition(event.latLng);
+        });
+
+        // $('<div/>').addClass('centerMarker').appendTo(map.getDiv())
+        // //do something onclick
+        //     .click(function(){
+        //         var that=$(this);
+        //         if(!that.data('win')){
+        //             // that.data('win',new google.maps.InfoWindow({content:'this is the center'}));
+        //             that.data('win').bindTo('position',map,'center');
+        //         }
+        //         that.data('win').open(map);
+        //     });
     }
 
 </script>
@@ -378,28 +415,18 @@ $no = 1;
             $('#modal-edit-area_konservasi [name=lokasi]').val($(this).attr('lokasi'));
             $('#modal-edit-area_konservasi [name=latitude]').val($(this).attr('latitude'));
             $('#modal-edit-area_konservasi [name=longitude]').val($(this).attr('longitude'));
+            var lat = parseFloat($(this).attr('latitude'));
+            var lng = parseFloat($(this).attr('longitude'));
+
+            posisi = new google.maps.LatLng(lat,lng);
+
+            marker2.setPosition(posisi);
+            map2.setCenter(posisi);
             $('#preview').attr('src',$(this).attr('gambar'));
             // $('#button_submit').attr('name', 'edit');
             $('#btnedit').attr('value', $(this).attr('id_wisata'));
 
-            map = new google.maps.Map(document.getElementById('map2'), {
-                center: {lat: $(this).attr('latitude'), lng: $(this).attr('longitude')},
-                zoom: 12
-            });
-            google.maps.event.addListener(map,'center_changed', function() {
-                document.getElementById('latitude').value = map.getCenter().lat();
-                document.getElementById('longitude').value = map.getCenter().lng();
-            });
-            $('<div/>').addClass('centerMarker').appendTo(map.getDiv())
-            //do something onclick
-                .click(function(){
-                    var that=$(this);
-                    if(!that.data('win')){
-                        // that.data('win',new google.maps.InfoWindow({content:'this is the center'}));
-                        that.data('win').bindTo('position',map,'center');
-                    }
-                    that.data('win').open(map);
-                });
+
         });
 
 
@@ -452,15 +479,6 @@ $no = 1;
             this.infowindow.open(map_detail, marker);
            });
 
-        }
-
-        function initTabelFauna(data) {
-          var component = '';
-          $.each(data, function(index, val) {
-             /* iterate through array or object */
-              component += '<tr> <td> '+(index+1)+' </td> <td>  '+val.nama_fauna+' </td> <td> '+val.jumlah_fauna+' </td> </tr>';
-          });
-          $('#tabel_fauna_content').html(component);
         }
 
         $('.detail_obyek_wisata').click(function(event) {
