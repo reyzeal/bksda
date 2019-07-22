@@ -1,18 +1,18 @@
 <?php
 /**
  * Code by Reyzeal
- * Jumat, 19 Juli 2019
+ * Jumat, 22 Juli 2019
  *
- * module VIEW agenda
+ * module VIEW Feedback
  */
 require_once 'konfigurasi/DB.php';
-$data = $DATABASE->select('SELECT * FROM agenda');
+$data = $DATABASE->select('SELECT * FROM feedback ORDER BY waktu DESC ');
 ?>
 
 <div id="page-wrapper" style="height: 100%;">
 	<div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Agenda</h1>
+            <h1 class="page-header">Feedback</h1>
         </div>
         <!-- /.col-lg-12 -->
     </div>
@@ -22,7 +22,7 @@ $data = $DATABASE->select('SELECT * FROM agenda');
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <button class="btn btn-primary" id="tambah-agenda"><span class="fa fa-plus"></span> Tambah Agenda</button>
+<!--                    <button class="btn btn-primary" id="tambah-feedback"><span class="fa fa-plus"></span> Tambah feedback</button>-->
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
@@ -30,26 +30,23 @@ $data = $DATABASE->select('SELECT * FROM agenda');
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama Agenda</th>
+                                <th>Pengirim</th>
                                 <th>Waktu</th>
-                                <th>Action</th>
+                                <th>Tanggapan</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                             $i=0;
-                            foreach ($data as $agenda){
+                            foreach ($data as $feedback){
                                 $i++;
-                                $encoded = json_encode($agenda);
+                                $encoded = json_encode($feedback);
 
                              echo "<tr>
                                  <td>$i</td>
-                                 <td>$agenda->judul</td>
-                                 <td>$agenda->waktu</td>
-                                 <td>
-                                     <button type='button' class='edit-agenda btn btn-warning' data='$encoded'>Edit</button>
-                                     <button href='/admin/proses/agenda.php?hapus=$agenda->id' class='hapus-agenda btn btn-danger'>Delete</button>
-                                 </td>
+                                 <td>$feedback->nama<br>($feedback->email)</td>
+                                 <td>$feedback->waktu</td>
+                                 <td>$feedback->pesan</td>
                              </tr>";
                             };?>
                         </tbody>
@@ -66,32 +63,39 @@ $data = $DATABASE->select('SELECT * FROM agenda');
 </div>
 </div>
 <!-- Modal -->
-<div style="height: 100%;" class="modal fade" id="modal-tambah-agenda" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div style="height: 100%;" class="modal fade" id="modal-tambah-feedback" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div style="height: 100%;" class="modal-dialog" role="document">
     <div style="height: 100%;" class="modal-content">
         <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Tambah Agenda</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Tambah feedback</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
         </div>
-        <form style="" role="form" method="POST" action="proses/agenda.php" enctype="multipart/form-data">
+        <form style="" role="form" method="POST" action="proses/feedback.php">
           <div class="modal-body" style="height: 100%;">
             <div class="form-group">
-                <label>Nama Agenda</label>
-                <input class="form-control" name="judul" type="text" required="">
+                <label>Username</label>
+                <input class="form-control" name="username" type="text" required="">
             </div>
             <div class="form-group">
-                <label>Waktu</label>
-                <input class="form-control" name="waktu" type="text" required="">
+                <label>Email</label>
+                <input class="form-control" name="email" type="email" required="">
             </div>
             <div class="form-group">
-                <label>Deskripsi</label>
-                <textarea class="form-control" name="deskripsi" type="text" required=""></textarea>
+                <label>Privilege</label>
+                <select name="privilege" class="form-control">
+                    <option>admin</option>
+                    <option>kepala</option>
+                </select>
             </div>
               <div class="form-group">
-                  <label>Gambar</label>
-                  <input class="form-control" name="gambar" type="file" accept="image/*" required>
+                  <label>Password</label>
+                  <input class="form-control" name="password" type="password" required="">
+              </div>
+              <div class="form-group">
+                  <label>Confirm Password</label>
+                  <input class="form-control" name="confirm" type="password" required="">
               </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -104,36 +108,39 @@ $data = $DATABASE->select('SELECT * FROM agenda');
 </div>
 <!-- Modal -->
 <!-- Modal -->
-<div style="height: 100%;" class="modal fade" id="modal-edit-agenda" tabindex="-1" role="dialog" aria-hidden="true">
+<div style="height: 100%;" class="modal fade" id="modal-edit-feedback" tabindex="-1" role="dialog" aria-hidden="true">
     <div style="height: 100%;" class="modal-dialog" role="document">
         <div style="height: 100%;" class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Edit Agenda</h5>
+                <h5 class="modal-title">Edit feedback</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form style="" role="form" method="POST" action="proses/agenda.php" enctype="multipart/form-data">
+            <form style="" role="form" method="POST" action="proses/feedback.php">
                 <div class="modal-body" style="height: 100%;">
                     <div class="form-group">
-                        <label>Nama Agenda</label>
-                        <input class="form-control" name="judul" type="text" required="">
+                        <label>Username</label>
+                        <input class="form-control" name="username" type="text" required="">
                     </div>
                     <div class="form-group">
-                        <label>Waktu</label>
-                        <input class="form-control" name="waktu" type="text" required="">
+                        <label>Email</label>
+                        <input class="form-control" name="email" type="email" required="">
                     </div>
                     <div class="form-group">
-                        <label>Deskripsi</label>
-                        <textarea class="form-control" name="deskripsi" type="text" required=""></textarea>
+                        <label>Privilege</label>
+                        <select name="privilege" class="form-control">
+                            <option>admin</option>
+                            <option>kepala</option>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label>Gambar</label>
-                        <div class="p-3">
-                            <p>Preview:</p>
-                            <img id="preview">
-                        </div>
-                        <input class="form-control" name="gambar" type="file" accept="image/*">
+                        <label>Password</label>
+                        <input class="form-control" name="password" type="password" required="">
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm Password</label>
+                        <input class="form-control" name="confirm" type="password" required="">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -144,11 +151,6 @@ $data = $DATABASE->select('SELECT * FROM agenda');
         </div>
     </div>
 </div>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuqp6YJymNF8Et7Xvd6SO3sBYqu2Bkc88&callback=initMap" async defer></script>
-<script src="/admin/js/flatpickr.min.js"></script>
-<script>
-    flatpickr('[name=waktu]', {});
-</script>
 <script>
     var map;
     var marker;
@@ -180,37 +182,38 @@ $data = $DATABASE->select('SELECT * FROM agenda');
             responsive: true
         });
 
-        $('#tambah-agenda').click(function(){
-            $('#modal-tambah-agenda').modal('show');
+        $('#tambah-feedback').click(function(){
+            $('#modal-tambah-feedback').modal('show');
         });
 
 
-        $('.edit-agenda').click(function(){
-            $('#modal-edit-agenda').modal('show');
+        $('.edit-feedback').click(function(){
+            $('#modal-edit-feedback').modal('show');
             var data = JSON.parse($(this).attr('data'));
-            // console.log(data);
-            $('#modal-edit-agenda [name=judul]').val(data.judul);
-            $('#modal-edit-agenda [name=waktu]').val(data.waktu);
-            $('#modal-edit-agenda [name=deskripsi]').val(data.deskripsi);
-            $('#modal-edit-agenda #preview').attr('src',data.gambar);
+            // console.log(data);feedback.php
+            $('#modal-edit-feedback [name=username]').val(data.usename);
+            $('#modal-edit-feedback [name=email]').val(data.email);
+            $('#modal-edit-feedback [name=privilege]').val(data.privilege);
+            $('#modal-edit-feedback [name=password]').val(data.password);
+            $('#modal-edit-feedback [name=confirm]').val(data.password);
 
-            $('#modal-edit-agenda form').attr('action', '/admin/proses/agenda.php?edit='+data.id);
+            $('#modal-edit-feedback form').attr('action', '/admin/proses/feedback.php?edit='+data.id);
         });
 
 
-        // $('.lihat-agenda').click(function(){
-        //     $('#modal-lihat-agenda').modal('show');
+        // $('.lihat-feedback').click(function(){
+        //     $('#modal-lihat-feedback').modal('show');
         //     $('[name=nama_wisata]').val($(this).attr('nama_wisata'));
         //     $('[name=lokasi]').val($(this).attr('lokasi'));
         //     $('[name=latitude]').val($(this).attr('latitude'));
         //     $('[name=longitude]').val($(this).attr('longitude'));
         // });
 
-        $('.hapus-agenda').click(function(e){
+        $('.hapus-feedback').click(function(e){
             var hrf = $(this).attr('href');
             e.preventDefault();
             swal({
-                title: "Hapus Agenda ini?",
+                title: "Hapus feedback ini?",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonClass: "btn-danger",

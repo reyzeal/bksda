@@ -79,6 +79,7 @@ $no = 1;
                                             family="<?php echo $data['family']; ?>"
                                             kehidupan_sosial="<?php echo $data['kehidupan_sosial']; ?>"
                                             kategori="<?php echo $data['id_kategori']; ?>"
+                                            gambar="<?php echo $data['gambar']; ?>"
 
                                         >
                                            <span class="fa fa-edit"></span>
@@ -116,7 +117,7 @@ $no = 1;
           <span aria-hidden="true">&times;</span>
       </button>
   </div>
-  <form role="form" method="POST" action="proses/simpan_fauna.php">
+  <form role="form" method="POST" action="proses/simpan_fauna.php" enctype="multipart/form-data">
     <input type="text" name="id" hidden="">
       <div class="modal-body">
         <div class="form-group">
@@ -174,6 +175,10 @@ $no = 1;
                  ?>
             </select>
         </div>
+          <div class="form-group">
+              <label>Gambar</label>
+              <input class="form-control" name="gambar" type="file" accept="image/*" required>
+          </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -196,7 +201,7 @@ $no = 1;
           <span aria-hidden="true">&times;</span>
       </button>
   </div>
-  <form role="form" method="POST" action="proses/simpan_fauna.php">
+  <form role="form" method="POST" action="proses/simpan_fauna.php" enctype="multipart/form-data">
     <input type="text" name="id" hidden="">
       <div class="modal-body">
         <div class="form-group">
@@ -254,6 +259,14 @@ $no = 1;
                  ?>
             </select>
         </div>
+          <div class="form-group">
+              <label>Gambar</label>
+              <div class="p-3">
+                  <p>Preview:</p>
+                  <img id="preview">
+              </div>
+              <input class="form-control" name="gambar" type="file" accept="image/*">
+          </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -380,6 +393,7 @@ $no = 1;
             $('[name=kehidupan_sosial]').val($(this).attr('kehidupan_sosial'));
             $('[name=id_kategori]').val($(this).attr('kategori'));
             $('#button_submit').attr('name', 'edit');
+            $('#modal-tambah-fauna #preview').attr('src',$(this).attr('gambar'));
         });
 
         $('.lihat-fauna').click(function(){

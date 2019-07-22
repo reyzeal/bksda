@@ -4,7 +4,7 @@ require_once 'konfigurasi/DB.php';
 $query = "SELECT kematian_fauna.id,kematian_fauna.tanggal_kematian,fauna.nama_fauna,ow.lokasi,kematian_fauna.alasan,kematian_fauna.jumlah_kematian FROM kematian_fauna 
           INNER JOIN detail_obyek_wisata on kematian_fauna.id_penyebaran=detail_obyek_wisata.id
           INNER JOIN obyek_wisata ow on detail_obyek_wisata.id_wisata = ow.id
-          INNER JOIN fauna on detail_obyek_wisata.id_fauna = fauna.id";
+          INNER JOIN fauna on detail_obyek_wisata.id_fauna = fauna.id ORDER BY tanggal_kematian DESC ";
 //$res = mysqli_query($con, $query);
 
 $query_penyebaran = "SELECT * FROM obyek_wisata";

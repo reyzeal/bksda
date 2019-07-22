@@ -1320,524 +1320,587 @@
     <table id="333" parent="2" name="fauna"/>
     <table id="334" parent="2" name="faunatodetail"/>
     <table id="335" parent="2" name="faunatopenyebaran"/>
-    <table id="336" parent="2" name="kategori"/>
-    <table id="337" parent="2" name="kematian_fauna"/>
-    <table id="338" parent="2" name="obyek_wisata"/>
-    <table id="339" parent="2" name="penambahan_fauna"/>
-    <table id="340" parent="2" name="penyebaran"/>
-    <column id="341" parent="330" name="id">
+    <table id="336" parent="2" name="feedback"/>
+    <table id="337" parent="2" name="kategori"/>
+    <table id="338" parent="2" name="kematian_fauna"/>
+    <table id="339" parent="2" name="obyek_wisata"/>
+    <table id="340" parent="2" name="penambahan_fauna"/>
+    <table id="341" parent="2" name="penyebaran"/>
+    <column id="342" parent="330" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="342" parent="330" name="judul">
+    <column id="343" parent="330" name="judul">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="343" parent="330" name="waktu">
+    <column id="344" parent="330" name="waktu">
       <Position>3</Position>
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="344" parent="330" name="deskripsi">
+    <column id="345" parent="330" name="deskripsi">
       <Position>4</Position>
       <DataType>text|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="345" parent="330" name="PRIMARY">
+    <column id="346" parent="330" name="gambar">
+      <Position>5</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="347" parent="330" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="346" parent="331" name="id">
+    <column id="348" parent="331" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="347" parent="331" name="usename">
+    <column id="349" parent="331" name="usename">
       <Position>2</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="348" parent="331" name="email">
+    <column id="350" parent="331" name="email">
       <Position>3</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="349" parent="331" name="password">
+    <column id="351" parent="331" name="password">
       <Position>4</Position>
       <DataType>tinyint(4)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="350" parent="331" name="privilege">
+    <column id="352" parent="331" name="privilege">
       <Position>5</Position>
       <DataType>varchar(15)|0s</DataType>
       <DefaultExpression>&apos;admin&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="351" parent="331" name="usename">
+    <index id="353" parent="331" name="usename">
       <ColNames>usename</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="352" parent="331" name="PRIMARY">
+    <index id="354" parent="331" name="email">
+      <ColNames>email</ColNames>
+      <Unique>1</Unique>
+      <Type>btree</Type>
+    </index>
+    <key id="355" parent="331" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="353" parent="331" name="usename">
+    <key id="356" parent="331" name="usename">
       <ColNames>usename</ColNames>
       <UnderlyingIndexName>usename</UnderlyingIndexName>
     </key>
-    <column id="354" parent="332" name="id">
+    <key id="357" parent="331" name="email">
+      <ColNames>email</ColNames>
+      <UnderlyingIndexName>email</UnderlyingIndexName>
+    </key>
+    <column id="358" parent="332" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="355" parent="332" name="id_wisata">
+    <column id="359" parent="332" name="id_wisata">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="356" parent="332" name="id_fauna">
+    <column id="360" parent="332" name="id_fauna">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="357" parent="332" name="jumlah_fauna">
+    <column id="361" parent="332" name="jumlah_fauna">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="358" parent="332" name="id_wisata">
+    <index id="362" parent="332" name="id_wisata">
       <ColNames>id_wisata
 id_fauna</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="359" parent="332" name="id_wisata_2">
+    <index id="363" parent="332" name="id_wisata_2">
       <ColNames>id_wisata
 id_fauna</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="360" parent="332" name="id_fauna">
+    <index id="364" parent="332" name="id_fauna">
       <ColNames>id_fauna</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="361" parent="332" name="PRIMARY">
+    <key id="365" parent="332" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="362" parent="332" name="id_wisata">
+    <key id="366" parent="332" name="id_wisata">
       <ColNames>id_wisata
 id_fauna</ColNames>
       <UnderlyingIndexName>id_wisata</UnderlyingIndexName>
     </key>
-    <foreign-key id="363" parent="332" name="detail_obyek_wisata_ibfk_1">
+    <foreign-key id="367" parent="332" name="detail_obyek_wisata_ibfk_1">
       <ColNames>id_wisata</ColNames>
       <RefSchemaName>bksdayogyakarta2</RefSchemaName>
       <RefTableName>obyek_wisata</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="364" parent="333" name="id">
+    <foreign-key id="368" parent="332" name="detail_obyek_wisata_ibfk_2">
+      <ColNames>id_fauna</ColNames>
+      <RefSchemaName>bksdayogyakarta2</RefSchemaName>
+      <RefTableName>fauna</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="369" parent="333" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="365" parent="333" name="nama_fauna">
+    <column id="370" parent="333" name="nama_fauna">
       <Position>2</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="366" parent="333" name="spesies">
+    <column id="371" parent="333" name="spesies">
       <Position>3</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="367" parent="333" name="deskripsi">
+    <column id="372" parent="333" name="deskripsi">
       <Position>4</Position>
       <DataType>varchar(1000)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="368" parent="333" name="status">
+    <column id="373" parent="333" name="status">
       <Position>5</Position>
       <DataType>enum(&apos;Sudah Dilepas ke Habitat Aslinya&apos;, &apos;Masih Dalam Penangkaran&apos;, &apos;&apos;, &apos;&apos;)|0e</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="369" parent="333" name="status_konservasi_nasional">
+    <column id="374" parent="333" name="status_konservasi_nasional">
       <Position>6</Position>
       <DataType>enum(&apos;dilindungi&apos;, &apos;tidak dilindungi&apos;)|0e</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="370" parent="333" name="status_konservasi_internasional">
+    <column id="375" parent="333" name="status_konservasi_internasional">
       <Position>7</Position>
       <DataType>enum(&apos;dilindungi&apos;, &apos;tidak dilindungi&apos;)|0e</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="371" parent="333" name="family">
+    <column id="376" parent="333" name="family">
       <Position>8</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="372" parent="333" name="kehidupan_sosial">
+    <column id="377" parent="333" name="kehidupan_sosial">
       <Position>9</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="373" parent="333" name="id_kategori">
+    <column id="378" parent="333" name="id_kategori">
       <Position>10</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="374" parent="333" name="gambar">
+    <column id="379" parent="333" name="gambar">
       <Position>11</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="375" parent="333" name="id_kategori">
+    <index id="380" parent="333" name="id_kategori">
       <ColNames>id_kategori</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="376" parent="333" name="PRIMARY">
+    <key id="381" parent="333" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="377" parent="333" name="fauna_ibfk_1">
+    <foreign-key id="382" parent="333" name="fauna_ibfk_1">
       <ColNames>id_kategori</ColNames>
       <RefSchemaName>bksdayogyakarta2</RefSchemaName>
       <RefTableName>kategori</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="378" parent="334" name="id_fauna">
+    <column id="383" parent="334" name="id_fauna">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="379" parent="334" name="id_detail">
+    <column id="384" parent="334" name="id_detail">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="380" parent="334" name="id_fauna">
+    <index id="385" parent="334" name="id_fauna">
       <ColNames>id_fauna</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="381" parent="334" name="id_detail">
+    <index id="386" parent="334" name="id_detail">
       <ColNames>id_detail</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="382" parent="334" name="id_fauna">
+    <key id="387" parent="334" name="id_fauna">
       <ColNames>id_fauna</ColNames>
       <UnderlyingIndexName>id_fauna</UnderlyingIndexName>
     </key>
-    <key id="383" parent="334" name="id_detail">
+    <key id="388" parent="334" name="id_detail">
       <ColNames>id_detail</ColNames>
       <UnderlyingIndexName>id_detail</UnderlyingIndexName>
     </key>
-    <foreign-key id="384" parent="334" name="faunatodetail_ibfk_1">
+    <foreign-key id="389" parent="334" name="faunatodetail_ibfk_1">
       <ColNames>id_fauna</ColNames>
       <RefSchemaName>bksdayogyakarta2</RefSchemaName>
       <RefTableName>fauna</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="385" parent="334" name="faunatodetail_ibfk_2">
+    <foreign-key id="390" parent="334" name="faunatodetail_ibfk_2">
       <ColNames>id_detail</ColNames>
       <RefSchemaName>bksdayogyakarta2</RefSchemaName>
       <RefTableName>detail_obyek_wisata</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="386" parent="335" name="id_fauna">
+    <column id="391" parent="335" name="id_fauna">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="387" parent="335" name="id_penyebaran">
+    <column id="392" parent="335" name="id_penyebaran">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="388" parent="335" name="id_fauna">
+    <index id="393" parent="335" name="id_fauna">
       <ColNames>id_fauna</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="389" parent="335" name="id_penyebaran">
+    <index id="394" parent="335" name="id_penyebaran">
       <ColNames>id_penyebaran</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="390" parent="335" name="id_fauna">
+    <key id="395" parent="335" name="id_fauna">
       <ColNames>id_fauna</ColNames>
       <UnderlyingIndexName>id_fauna</UnderlyingIndexName>
     </key>
-    <key id="391" parent="335" name="id_penyebaran">
+    <key id="396" parent="335" name="id_penyebaran">
       <ColNames>id_penyebaran</ColNames>
       <UnderlyingIndexName>id_penyebaran</UnderlyingIndexName>
     </key>
-    <foreign-key id="392" parent="335" name="faunatopenyebaran_ibfk_1">
+    <foreign-key id="397" parent="335" name="faunatopenyebaran_ibfk_1">
       <ColNames>id_fauna</ColNames>
       <RefSchemaName>bksdayogyakarta2</RefSchemaName>
       <RefTableName>fauna</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="393" parent="335" name="faunatopenyebaran_ibfk_2">
+    <foreign-key id="398" parent="335" name="faunatopenyebaran_ibfk_2">
       <ColNames>id_penyebaran</ColNames>
       <RefSchemaName>bksdayogyakarta2</RefSchemaName>
       <RefTableName>penyebaran</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="394" parent="336" name="id">
+    <column id="399" parent="336" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="395" parent="336" name="nama_kategori">
+    <column id="400" parent="336" name="nama">
       <Position>2</Position>
-      <DataType>varchar(50)|0s</DataType>
+      <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="396" parent="336" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="397" parent="337" name="id">
-      <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="398" parent="337" name="jumlah_kematian">
-      <Position>2</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="399" parent="337" name="tanggal_kematian">
+    <column id="401" parent="336" name="email">
       <Position>3</Position>
-      <DataType>datetime|0s</DataType>
+      <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="400" parent="337" name="alasan">
+    <column id="402" parent="336" name="subjek">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="401" parent="337" name="id_penyebaran">
+    <column id="403" parent="336" name="pesan">
       <Position>5</Position>
-      <DataType>int(11)|0s</DataType>
+      <DataType>text|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="402" parent="337" name="id_penyebaran">
-      <ColNames>id_penyebaran</ColNames>
-      <Unique>1</Unique>
-      <Type>btree</Type>
-    </index>
-    <index id="403" parent="337" name="id_penyebaran_2">
-      <ColNames>id_penyebaran</ColNames>
-      <Type>btree</Type>
-    </index>
-    <key id="404" parent="337" name="PRIMARY">
+    <column id="404" parent="336" name="waktu">
+      <Position>6</Position>
+      <DataType>datetime|0s</DataType>
+      <DefaultExpression>current_timestamp()</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="405" parent="336" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="405" parent="337" name="id_penyebaran">
-      <ColNames>id_penyebaran</ColNames>
-      <UnderlyingIndexName>id_penyebaran</UnderlyingIndexName>
-    </key>
-    <foreign-key id="406" parent="337" name="kematian_fauna_ibfk_1">
-      <ColNames>id_penyebaran</ColNames>
-      <RefSchemaName>bksdayogyakarta2</RefSchemaName>
-      <RefTableName>penyebaran</RefTableName>
-      <RefColNames>id</RefColNames>
-    </foreign-key>
-    <column id="407" parent="338" name="id">
+    <column id="406" parent="337" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="408" parent="338" name="nama_wisata">
+    <column id="407" parent="337" name="nama_kategori">
       <Position>2</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="409" parent="338" name="lokasi">
-      <Position>3</Position>
-      <DataType>varchar(100)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="410" parent="338" name="latitude">
-      <Position>4</Position>
-      <DataType>double|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="411" parent="338" name="longitude">
-      <Position>5</Position>
-      <DataType>double|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="412" parent="338" name="gambar">
-      <Position>6</Position>
-      <DataType>varchar(255)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <key id="413" parent="338" name="PRIMARY">
+    <key id="408" parent="337" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="414" parent="339" name="id">
+    <column id="409" parent="338" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="415" parent="339" name="jumlah_penambahan">
+    <column id="410" parent="338" name="jumlah_kematian">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="416" parent="339" name="tanggal_penambahan">
+    <column id="411" parent="338" name="tanggal_kematian">
       <Position>3</Position>
       <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="417" parent="339" name="id_penyebaran">
+    <column id="412" parent="338" name="alasan">
       <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="413" parent="338" name="id_penyebaran">
+      <Position>5</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="418" parent="339" name="id_penyebaran">
+    <index id="414" parent="338" name="id_penyebaran">
       <ColNames>id_penyebaran</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="419" parent="339" name="id_penyebaran_2">
+    <index id="415" parent="338" name="id_penyebaran_2">
       <ColNames>id_penyebaran</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="420" parent="339" name="PRIMARY">
+    <key id="416" parent="338" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="421" parent="339" name="id_penyebaran">
+    <key id="417" parent="338" name="id_penyebaran">
       <ColNames>id_penyebaran</ColNames>
       <UnderlyingIndexName>id_penyebaran</UnderlyingIndexName>
     </key>
-    <foreign-key id="422" parent="339" name="penambahan_fauna_ibfk_1">
+    <foreign-key id="418" parent="338" name="kematian_fauna_ibfk_1">
       <ColNames>id_penyebaran</ColNames>
       <RefSchemaName>bksdayogyakarta2</RefSchemaName>
-      <RefTableName>penyebaran</RefTableName>
+      <RefTableName>detail_obyek_wisata</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="423" parent="340" name="id">
+    <column id="419" parent="339" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="424" parent="340" name="id_fauna">
+    <column id="420" parent="339" name="nama_wisata">
       <Position>2</Position>
-      <DataType>int(11)|0s</DataType>
+      <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="425" parent="340" name="penyebaran">
+    <column id="421" parent="339" name="lokasi">
       <Position>3</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="426" parent="340" name="lokasi_penyebaran">
+    <column id="422" parent="339" name="latitude">
       <Position>4</Position>
-      <DataType>varchar(100)|0s</DataType>
+      <DataType>double|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="427" parent="340" name="latitude">
+    <column id="423" parent="339" name="longitude">
       <Position>5</Position>
       <DataType>double|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="428" parent="340" name="longitude">
+    <column id="424" parent="339" name="gambar">
+      <Position>6</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="425" parent="339" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="426" parent="340" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="427" parent="340" name="jumlah_penambahan">
+      <Position>2</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="428" parent="340" name="tanggal_penambahan">
+      <Position>3</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="429" parent="340" name="id_penyebaran">
+      <Position>4</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="430" parent="340" name="id_penyebaran">
+      <ColNames>id_penyebaran</ColNames>
+      <Unique>1</Unique>
+      <Type>btree</Type>
+    </index>
+    <index id="431" parent="340" name="id_penyebaran_2">
+      <ColNames>id_penyebaran</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="432" parent="340" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="433" parent="340" name="id_penyebaran">
+      <ColNames>id_penyebaran</ColNames>
+      <UnderlyingIndexName>id_penyebaran</UnderlyingIndexName>
+    </key>
+    <foreign-key id="434" parent="340" name="penambahan_fauna_ibfk_1">
+      <ColNames>id_penyebaran</ColNames>
+      <RefSchemaName>bksdayogyakarta2</RefSchemaName>
+      <RefTableName>detail_obyek_wisata</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="435" parent="341" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="436" parent="341" name="id_fauna">
+      <Position>2</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="437" parent="341" name="penyebaran">
+      <Position>3</Position>
+      <DataType>varchar(100)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="438" parent="341" name="lokasi_penyebaran">
+      <Position>4</Position>
+      <DataType>varchar(100)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="439" parent="341" name="latitude">
+      <Position>5</Position>
+      <DataType>double|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="440" parent="341" name="longitude">
       <Position>6</Position>
       <DataType>double|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="429" parent="340" name="jumlah_fauna">
+    <column id="441" parent="341" name="jumlah_fauna">
       <Position>7</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="430" parent="340" name="radius_penyebaran">
+    <column id="442" parent="341" name="radius_penyebaran">
       <Position>8</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="431" parent="340" name="id_fauna_2">
+    <index id="443" parent="341" name="id_fauna_2">
       <ColNames>id_fauna</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="432" parent="340" name="PRIMARY">
+    <key id="444" parent="341" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>

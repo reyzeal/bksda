@@ -5,6 +5,14 @@
  *
  * module LAYOUT VIEW MASTER
  */
+require 'konfigurasi/DB.php';
+require 'proses/session.php';
+if(!isset($_GET['id'])) header('Location: /pengunjung');
+$id = $_GET['id'];
+$data = $DATABASE->select("SELECT * FROM agenda WHERE id=$id");
+if(count($data)){
+    $data = $data[0];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,17 +67,17 @@
 
         <nav id="nav-menu-container">
             <ul class="nav-menu d-flex">
-                <li class="menu-active"><a href="#intro" style="font-size:16px">Home</a></li>
-                <li><a href="#about" style="font-size:16px">About Us</a></li>
-                <li><a href="#agenda" style="font-size:16px">Agenda</a></li>
-                <li><a href="#news" style="font-size:16px">News</a></li>
+                <li class="menu-active"><a href="/pengunjung#intro" style="font-size:16px">Home</a></li>
+                <li><a href="/pengunjung#about" style="font-size:16px">About Us</a></li>
+                <li><a href="/pengunjung#agenda" style="font-size:16px">Agenda</a></li>
+                <li><a href="/pengunjung#news" style="font-size:16px">News</a></li>
                 <li><a href="#contact" style="font-size:16px">Contact Us</a></li>
                 <?php
-                    if($AUTH->get()){
-                        echo "<li><button onclick='window.open(\"/admin\")' class=\"btn btn-warning\" href='/admin' style=\"color:white;font-size:16px\"></span>&nbsp ADMIN  &nbsp</button></li>";
-                    }else{
-                        echo "<li><button class=\"btn btn-warning\" data-toggle=\"modal\" data-target=\"#modal-form-login\" style=\"color:white;font-size:16px\"></span>&nbsp LOGIN  &nbsp</button></li>";
-                    };
+                if($AUTH->get()){
+                    echo "<li><button onclick='window.open(\"/admin\")' class=\"btn btn-warning\" href='/admin' style=\"color:white;font-size:16px\"></span>&nbsp ADMIN  &nbsp</button></li>";
+                }else{
+                    echo "<li><button class=\"btn btn-warning\" data-toggle=\"modal\" data-target=\"#modal-form-login\" style=\"color:white;font-size:16px\"></span>&nbsp LOGIN  &nbsp</button></li>";
+                };
                 ?>
 
             </ul>
@@ -80,80 +88,46 @@
 <!--==========================
   Intro Section
 ============================-->
-<section id="intro">
-
-    <div class="intro-text mt-5">
-        <h2>WELCOME TO BKSDA YOGYAKARTA</h2>
-        <p>"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
-            "There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..."</p>
-        <a href="#about" class="btn-get-started scrollto">Yukkk Liat Lebih Banyak Tentang BKSDA</a>
+<section id="intro" style="height: 100px!important;" class="d-flex align-items-end">
+    <div class="container">
+<!--        <p>Agenda</p>-->
     </div>
-
-    <div class="product-screens">
-
-        <div class="product-screen-1 wow fadeInUp" data-wow-delay="0.4s" data-wow-duration="0.6s">
-            <img src="img/product-screen-0.png" style="border-radius: 50%;border: 1px solid #ff675b;"  alt="">
-        </div>
-
-        <div class="product-screen-2 wow fadeInUp" data-wow-delay="0.2s" data-wow-duration="0.6s">
-            <img src="img/product-screen-0.png" style="border-radius: 50%;border: 1px solid #ff675b;" alt="">
-        </div>
-
-        <div class="product-screen-3 wow fadeInUp" data-wow-duration="0.6s">
-            <img src="img/product-screen-0.png" style="border-radius: 50%;border: 1px solid #ff675b;" alt="">
-        </div>
-
-    </div>
-
 </section><!-- #intro -->
 
 <main id="main">
-
-    <!--==========================
-      About Us Section
-    ============================-->
-    <section id="about" class="section-bg">
-        <div class="container-fluid">
-            <div class="section-header">
-                <h3 class="section-title">About Us</h3>
-                <span class="section-divider"></span>
-                <p class="section-description px-5">
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
-                </p>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-6 about-img wow fadeInLeft">
-                    <img src="img/about-img.jpg" alt="">
-                </div>
-
-                <div class="col-lg-6 content wow fadeInRight">
-                    <h2>BKSDA adalah {{ blablabla ...}}</h2>
-                    <h3>{{ Blablabla ... }}</h3>
-                    <p>
-                        {{ Blablabla ...  }}
-                    </p>
-
-                    <ul>
-                        <li><i class="ion-android-checkmark-circle"></i> {{ Blablabla ...  }}</li>
-                        <li><i class="ion-android-checkmark-circle"></i> {{ Blablabla ...  }}</li>
-                        <li><i class="ion-android-checkmark-circle"></i> {{ Blablabla ...  }}</li>
-                    </ul>
-
-                    <p>
-                        {{ Blablabla ...  }}
-                </div>
-            </div>
-
-        </div>
-    </section><!-- #about -->
-
-    <!--==========================
-      Product Advanced Featuress Section
-    ============================-->
     <section id="advanced-features">
+        <div class="features-row section-bg bg-white" id="agenda" style="min-height: 500px">
+            <div class="container">
+                <div class="row">
+                    <h2><?=$data->judul;?></h2>
+                </div>
+                <div class="row">
+                    <div class="col-12 d-flex">
+                        <div class="px-3">
+                            <?php
+                            $time = strtotime($data->waktu);
+                            $day = date('d',$time);
+                            $numericDay = $day;
+                            $weekday = date('l',strtotime("Sunday +{$numericDay} days"));
+                            $month = date('F',$time);
+                            $year = date('Y',$time);
+                            echo "<time datetime=\"$data->waktu\" class=\"date-as-calendar position-em size1x\">
+                                            <span class=\"weekday\">$weekday</span>
+                                            <span class=\"day\">$day</span>
+                                            <span class=\"month\">$month</span>
+                                            <span class=\"year\">$year</span>
+                                            </time>";
+                            ?>
+                        </div>
+                        <p class="px-3">
+                            <?=$data->deskripsi;?>
+                        </p>
+                        <img src="<?=$data->gambar;?>" class="img-thumbnail">
+                    </div>
+                </div>
+            </div>
+        </div>
         <?php require 'section/agenda.php';?>
-        <?php require 'section/fauna_news.php';?>
     </section><!-- #advanced-features -->
     <?php require 'section/footer.php';?>
 

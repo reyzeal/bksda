@@ -8,10 +8,11 @@
  *      Logout -> pengunjung
  *      Guest  -> login
  */
+
 session_start();
+
 if(isset($_SESSION['login_status']) && $_SESSION['login_status']){
     session_destroy();
-    header('Location: /pengunjung');
-}else{
-    header('Location: /admin/login.php');
 }
+header('Location: /pengunjung');
+

@@ -7,6 +7,7 @@
  */
 class DB{
     private $connection = null;
+    public $error = null;
     public function __construct()
     {
         $servername = "localhost";
@@ -22,7 +23,12 @@ class DB{
     }
 
     public function query($sql){
-
+        $result = $this->connection->query($sql);
+        if($this->connection->error){
+            $this->error = $this->connection->error;
+            return false;
+        }
+        return true;
     }
     public function select($sql){
         $result = $this->connection->query($sql);

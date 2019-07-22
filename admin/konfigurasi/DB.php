@@ -8,7 +8,8 @@
  *      $DATABASE->select('sql') untuk proses query dengan data record
  */
 class DB{
-    private $connection = null;
+    public $error = null;
+    public $connection = null;
     public function __construct()
     {
         $servername = "localhost";
@@ -26,6 +27,7 @@ class DB{
     public function query($sql){
         $result = $this->connection->query($sql);
         if($this->connection->error){
+            $this->error = $this->connection->error;
             return false;
         }
         return true;

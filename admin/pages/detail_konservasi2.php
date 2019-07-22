@@ -7,17 +7,18 @@
  */
 require_once 'konfigurasi/DB.php';
 $id = $_GET['id'];
-$sql_konservasi = "SELECT obyek_wisata.id, obyek_wisata.nama_wisata, obyek_wisata.lokasi, obyek_wisata.latitude, obyek_wisata.longitude FROM obyek_wisata WHERE id = '$id'";
+$sql_konservasi = "SELECT obyek_wisata.id, obyek_wisata.nama_wisata, obyek_wisata.gambar, obyek_wisata.lokasi, obyek_wisata.latitude, obyek_wisata.longitude FROM obyek_wisata WHERE id = '$id'";
 
 $sql_fauna = "SELECT detail_obyek_wisata.id_wisata as 'id', fauna.nama_fauna as 'nama', detail_obyek_wisata.jumlah_fauna as 'jumlah' FROM detail_obyek_wisata INNER JOIN fauna ON fauna.id = detail_obyek_wisata.id_fauna WHERE detail_obyek_wisata.id_wisata = '$id'";
 $data_konservasi = $DATABASE->select($sql_konservasi);
+$data_konservasi = $data_konservasi[0];
 $data_fauna = $DATABASE->select($sql_fauna);
 
 $sql_daftar_fauna = "SELECT fauna.id, fauna.nama_fauna FROM fauna";
 $data_daftar_fauna = $DATABASE->select($sql_daftar_fauna);
 ?>
 
-<div id="page-wrapper" style="height: 100%;">
+<div id="page-wrapper" style="min-height: 100% !important;">
 	<div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">Area Konservasi <?= $data_konservasi->nama_wisata;?></h1>
@@ -30,10 +31,11 @@ $data_daftar_fauna = $DATABASE->select($sql_daftar_fauna);
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <button class="btn btn-primary" id="tambah-fauna"><span class="fa fa-plus"></span> Tambah Fauna</button>
+
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
+                    <img src="<?=$data_konservasi->gambar;?>" class="img-fluid w-100">
                     <table class="table">
                         <tr>
                             <td>Nama Konservasi<br>(Objek Wisata)</td>
@@ -57,24 +59,41 @@ $data_daftar_fauna = $DATABASE->select($sql_daftar_fauna);
                         </tr>
                     </table>
                     <div style="height: 200px;" class="mb-3" id="map_detail"></div>
+
+               <!-- /.table-responsive -->
+
+                </div>
+           <!-- /.panel-body -->
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Daftar Fauna</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <button class="btn btn-primary" id="tambah-fauna"><span class="fa fa-plus"></span> Tambah Fauna</button>
+                </div>
+                <div class="panel-body">
                     <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                         <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Nama fauna</th>
-                                <th>Jumlah</th>
-                                <th>Action</th>
-                            </tr>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama fauna</th>
+                            <th>Jumlah</th>
+                            <th>Action</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <?php
-                            $i=0;
-                            $data_fauna = is_array($data_fauna)?$data_fauna:[$data_fauna];
-                            foreach ($data_fauna as $fauna){
-                                $i++;
-                                $encoded = json_encode($fauna);
+                        <?php
+                        $i=0;
+                        $data_fauna = is_array($data_fauna)?$data_fauna:[$data_fauna];
+                        foreach ($data_fauna as $fauna){
+                            $i++;
+                            $encoded = json_encode($fauna);
 
-                             echo "<tr>
+                            echo "<tr>
                                  <td>$i</td>
                                  <td>$fauna->nama</td>
                                  <td>$fauna->jumlah</td>
@@ -83,16 +102,14 @@ $data_daftar_fauna = $DATABASE->select($sql_daftar_fauna);
                                      <button href='/admin/proses/fauna_konservasi.php?hapus=$fauna->id' class='hapus-fauna btn btn-danger'>Delete</button>
                                  </td>
                              </tr>";
-                            };?>
+                        };?>
                         </tbody>
                     </table>
-               <!-- /.table-responsive -->
-
                 </div>
-           <!-- /.panel-body -->
-       </div>
-       <!-- /.panel -->
-   </div>
+            </div>
+        <!-- /.panel -->
+        </div>
+
    <!-- /.col-lg-12 -->
 
 </div>

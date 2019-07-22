@@ -51,36 +51,36 @@ $no = 1;
 
   <table>
       <?php while ($data = mysqli_fetch_assoc($res)) {?>
-        <tr>
+      <tr>
           <td>Nama Obyek Wisata (Konservasi)</td> <td>:</td>
           <td><?php echo $data["nama_wisata"]; ?></td>
-        </tr>
-        <tr>
+      </tr>
+      <tr>
           <td>Lokasi</td><td>:</td>
           <td rowspan="3"><?php echo $data["lokasi"]; ?></td>
-        </tr>
+      </tr>
   </table>
   <br>
   Data fauna yang terdapat di Area Konservasi <?php echo $data['nama_wisata'] ?> sebagai berikut: <br><br>
   <?php } ?>
 
   <table>
-    <thead>
+      <thead>
       <tr>
-        <th>No</th>
-        <th>Nama Fauna</th>
-        <th>Jumlah Fauna</th>
+          <th>No</th>
+          <th>Nama Fauna</th>
+          <th>Jumlah Fauna</th>
       </tr>
-    </thead>
-    <tbody>
+      </thead>
+      <tbody>
       <?php while ($data2 = mysqli_fetch_assoc($res2)) {?>
-        <tr class="odd gradeX">
-          <td><?php echo $no++; ?></td>
-          <td><?php echo $data2["nama_fauna"]; ?></td>
-          <td><?php echo $data2['jumlah_fauna']; ?></td>
-        </tr>
+          <tr class="odd gradeX">
+              <td><?php echo $no++; ?></td>
+              <td><?php echo $data2["nama_fauna"]; ?></td>
+              <td><?php echo $data2['jumlah_fauna']; ?></td>
+          </tr>
       <?php } ?>
-    </tbody>
+      </tbody>
   </table>
 
 </body>

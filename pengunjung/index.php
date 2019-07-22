@@ -8,4 +8,5 @@
 
 // Module DB -> $DATABASE
 require 'konfigurasi/DB.php';
+require 'proses/session.php';
 require 'section/layout.php';

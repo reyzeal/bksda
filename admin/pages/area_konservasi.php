@@ -60,6 +60,7 @@ $no = 1;
                                        lokasi="<?php echo $data['lokasi']; ?>"
                                        latitude="<?php echo $data['latitude']; ?>"
                                        longitude="<?php echo $data['longitude']; ?>"
+                                       gambar="<?php echo $data['gambar']; ?>"
                                        >
                                        <span class="fa fa-edit"></span>
                                    </button>
@@ -148,16 +149,16 @@ $no = 1;
 <!-- Modal -->
 
 <div style="height: 100%;" class="modal fade" id="modal-tambah-area_konservasi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div style="height: 100%;" class="modal-dialog" role="document">
-    <div style="height: 100%;" class="modal-content">
+  <div class="modal-dialog min-h-100" role="document">
+    <div class="modal-content">
         <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Tambah Area Konservasi (Objek Wisata)</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
         </div>
-        <form style="" role="form" method="POST" action="proses/simpan_konservasi.php">
-              <div class="modal-body" style="height: 100%;">
+        <form style="" role="form" method="POST" action="proses/simpan_konservasi.php" enctype="multipart/form-data">
+              <div class="modal-body">
                 <div class="form-group">
                     <label>Nama Konservasi (Objek Wisata)</label>
                     <input class="form-control" name="nama_wisata" type="text" required="">
@@ -174,6 +175,10 @@ $no = 1;
                     <label>Longitude</label>
                     <input class="form-control" name="longitude" type="text" required="" id="longitude" readonly="">
                 </div>
+                  <div class="form-group">
+                      <label>Gambar</label>
+                      <input class="form-control" name="gambar" type="file" accept="image/*" required>
+                  </div>
                   <div id="map"></div>
               </div>
             <div class="modal-footer">
@@ -184,8 +189,55 @@ $no = 1;
         </form>
 
     </div>
+    </div>
 </div>
 
+<div style="height: 100%;" class="modal fade" id="modal-edit-area_konservasi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog min-h-100" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Area Konservasi (Objek Wisata)</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form style="" role="form" method="POST" action="proses/simpan_konservasi.php" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Nama Konservasi (Objek Wisata)</label>
+                        <input class="form-control" name="nama_wisata" type="text" required="">
+                    </div>
+                    <div class="form-group">
+                        <label>Lokasi</label>
+                        <input class="form-control" name="lokasi" type="text" required="">
+                    </div>
+                    <div class="form-group">
+                        <label>Latitude</label>
+                        <input class="form-control" name="latitude" type="text" required="" id="latitude" readonly="">
+                    </div>
+                    <div class="form-group">
+                        <label>Longitude</label>
+                        <input class="form-control" name="longitude" type="text" required="" id="longitude" readonly="">
+                    </div>
+                    <div class="form-group">
+                        <label>Gambar</label>
+                        <div class="p-3">
+                            <p>Preview:</p>
+                            <img id="preview">
+                        </div>
+                        <input class="form-control" name="gambar" type="file" accept="image/*" required>
+                    </div>
+                    <div id="map2"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" name="edit" id="btnedit">Save</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
 </div>
 <!-- Modal -->
 
@@ -303,6 +355,7 @@ $no = 1;
             that.data('win').open(map);
          });
     }
+
 </script>
 <script>
     $(document).ready(function() {
@@ -319,14 +372,34 @@ $no = 1;
         });
 
         $('.edit-area_konservasi').click(function(){
-            $('#modal-tambah-area_konservasi').modal('show');
+            $('#modal-edit-area_konservasi').modal('show');
 
-            $('[name=nama_wisata]').val($(this).attr('nama_wisata'));
-            $('[name=lokasi]').val($(this).attr('lokasi'));
-            $('[name=latitude]').val($(this).attr('latitude'));
-            $('[name=longitude]').val($(this).attr('longitude'));
+            $('#modal-edit-area_konservasi [name=nama_wisata]').val($(this).attr('nama_wisata'));
+            $('#modal-edit-area_konservasi [name=lokasi]').val($(this).attr('lokasi'));
+            $('#modal-edit-area_konservasi [name=latitude]').val($(this).attr('latitude'));
+            $('#modal-edit-area_konservasi [name=longitude]').val($(this).attr('longitude'));
+            $('#preview').attr('src',$(this).attr('gambar'));
+            // $('#button_submit').attr('name', 'edit');
+            $('#btnedit').attr('value', $(this).attr('id_wisata'));
 
-            $('#button_submit').attr('name', 'edit');
+            map = new google.maps.Map(document.getElementById('map2'), {
+                center: {lat: $(this).attr('latitude'), lng: $(this).attr('longitude')},
+                zoom: 12
+            });
+            google.maps.event.addListener(map,'center_changed', function() {
+                document.getElementById('latitude').value = map.getCenter().lat();
+                document.getElementById('longitude').value = map.getCenter().lng();
+            });
+            $('<div/>').addClass('centerMarker').appendTo(map.getDiv())
+            //do something onclick
+                .click(function(){
+                    var that=$(this);
+                    if(!that.data('win')){
+                        // that.data('win',new google.maps.InfoWindow({content:'this is the center'}));
+                        that.data('win').bindTo('position',map,'center');
+                    }
+                    that.data('win').open(map);
+                });
         });
 
 

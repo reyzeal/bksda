@@ -195,7 +195,7 @@ $data = $DATABASE->select('SELECT * FROM akun');
         $('.edit-akun').click(function(){
             $('#modal-edit-akun').modal('show');
             var data = JSON.parse($(this).attr('data'));
-            // console.log(data);
+            // console.log(data);akun.php
             $('#modal-edit-akun [name=username]').val(data.usename);
             $('#modal-edit-akun [name=email]').val(data.email);
             $('#modal-edit-akun [name=privilege]').val(data.privilege);

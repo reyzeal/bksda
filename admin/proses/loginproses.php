@@ -1,6 +1,6 @@
 <?php
 session_start();
-require '../konfigurasi/koneksi.php';
+require '../konfigurasi/DB.php';
 
 $email = $_POST ['email'];
 $pass = $_POST ['password'];
