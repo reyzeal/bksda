@@ -75,7 +75,7 @@ $data = $DATABASE->select('SELECT * FROM agenda');
           <span aria-hidden="true">&times;</span>
         </button>
         </div>
-        <form style="" role="form" method="POST" action="proses/agenda.php" enctype="multipart/form-data">
+        <form id="form-agenda-tambah" style="" role="form" method="POST" action="proses/agenda.php" enctype="multipart/form-data">
           <div class="modal-body" style="height: 100%;">
             <div class="form-group">
                 <label>Nama Agenda</label>
@@ -83,7 +83,7 @@ $data = $DATABASE->select('SELECT * FROM agenda');
             </div>
             <div class="form-group">
                 <label>Waktu</label>
-                <input class="form-control" name="waktu" type="text" required="">
+                <input class="form-control" name="waktu" type="date" required="" autocomplete="off" readonly>
             </div>
             <div class="form-group">
                 <label>Deskripsi</label>
@@ -113,7 +113,7 @@ $data = $DATABASE->select('SELECT * FROM agenda');
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form style="" role="form" method="POST" action="proses/agenda.php" enctype="multipart/form-data">
+            <form id="form-agenda-edit" style="" role="form" method="POST" action="proses/agenda.php" enctype="multipart/form-data">
                 <div class="modal-body" style="height: 100%;">
                     <div class="form-group">
                         <label>Nama Agenda</label>
@@ -121,7 +121,7 @@ $data = $DATABASE->select('SELECT * FROM agenda');
                     </div>
                     <div class="form-group">
                         <label>Waktu</label>
-                        <input class="form-control" name="waktu" type="text" required="">
+                        <input class="form-control" name="waktu" type="date" required="" autocomplete="off">
                     </div>
                     <div class="form-group">
                         <label>Deskripsi</label>
@@ -146,8 +146,21 @@ $data = $DATABASE->select('SELECT * FROM agenda');
 </div>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuqp6YJymNF8Et7Xvd6SO3sBYqu2Bkc88&callback=initMap" async defer></script>
 <script src="../admin/js/flatpickr.min.js"></script>
+<script src="../admin/js/moment.js"></script>
 <script>
-    flatpickr('[name=waktu]', {});
+    flatpickr('[name=waktu]', {
+         // allowInput:true
+    });
+
+    $('#form-agenda-edit,#form-agenda-tambah').submit(function (e) {
+        var children = $(this).find('input[name=waktu]');
+        data = children.val();
+        if(!data.length && !moment(data,'YYYY/MM/DD',true).isValid()) {
+            alert('Waktu masih belum valid');
+            e.preventDefault();
+            e.stopPropagation();
+        }
+    })
 </script>
 <script>
     var map;
@@ -183,6 +196,7 @@ $data = $DATABASE->select('SELECT * FROM agenda');
         $('#tambah-agenda').click(function(){
             $('#modal-tambah-agenda').modal('show');
         });
+
 
 
         $('.edit-agenda').click(function(){

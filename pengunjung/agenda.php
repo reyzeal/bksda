@@ -119,11 +119,15 @@ if(count($data)){
                                             </time>";
                             ?>
                         </div>
-                        <p class="px-3">
-                            <?=$data->deskripsi;?>
-                        </p>
-                        <img src="<?=$data->gambar;?>" class="img-thumbnail">
+                        <div class="row">
+                            <img src="<?=$data->gambar;?>" class="img-thumbnail m-3">
+                            <p class="px-3">
+                                <?=$data->deskripsi;?>
+                            </p>
+                        </div>
+
                     </div>
+
                 </div>
             </div>
         </div>

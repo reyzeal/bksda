@@ -23,6 +23,8 @@ if(isset($_POST['simpan'])){
         $status = $DATABASE->query("INSERT INTO akun VALUES (null,'$username','$email','$password','$privilege')");
     }else{
         $FLASH->error('password dan confirm tidak sama');
+        header('Location: ../../admin/index.php?page=akun');
+        die();
     }
     header('Location: ../../admin/index.php?page=akun');
     if($status){
@@ -43,7 +45,9 @@ if(isset($_GET['edit'])){
     if($password == $confirm){
         $status = $DATABASE->query("UPDATE akun SET usename = '$username', password = '$password', privilege = '$privilege', email='$email' WHERE id = $id");
     }else{
-        die('password dan confirm tidak sama');
+        $FLASH->error('password dan confirm tidak sama');
+        header('Location: ../../admin/index.php?page=akun');
+        die();
     }
 
     header('Location: ../../admin/index.php?page=akun');
@@ -51,7 +55,7 @@ if(isset($_GET['edit'])){
         $FLASH->success('Berhasil mengedit akun');
     }
     else{
-        $FLASH->error($DATABASE->error);
+        $FLASH->error(htmlentities($DATABASE->error));
     }
 }
 

@@ -10,11 +10,15 @@ if (isset($_POST['simpan'])) {
 	$latitude = $_POST['latitude'];
 	$longitude = $_POST['longitude'];
 
-
-	$info = pathinfo($_FILES['gambar']['name']);
-	$ext = $info['extension'];
-	$namabaru = md5(date('Y-m-d H:i:s')).".$ext";
-	move_uploaded_file($_FILES['gambar']['tmp_name'],"../../resources/$namabaru");
+	if(isset($_FILES['gambar']) && $_FILES['gambar']['tmp_name']){
+		$info = pathinfo($_FILES['gambar']['name']);
+		$ext = $info['extension'];
+		$namabaru = md5(date('Y-m-d H:i:s')).".$ext";
+		move_uploaded_file($_FILES['gambar']['tmp_name'],"../../resources/$namabaru");
+	}else{
+		$namabaru =md5(date('Y-m-d H:i:s')).".jpg";
+		copy('../../pengunjung/img/unknown.jpg',"../../resources/$namabaru");
+	}
 	$gambar = "../resources/$namabaru";
 
 
@@ -38,7 +42,7 @@ if (isset($_POST['edit'])) {
 	$longitude = $_POST['longitude'];
 	$id = $_POST['edit'];
 	$old = $DATABASE->select("SELECT gambar FROM obyek_wisata WHERE id='$id'")[0]->gambar;
-	if(isset($_FILES['gambar'])){
+	if(isset($_FILES['gambar']) && $_FILES['gambar']['tmp_name']){
 		$info = pathinfo($_FILES['gambar']['name']);
 		$ext = $info['extension'];
 		$namabaru = md5(date('Y-m-d H:i:s')).".$ext";

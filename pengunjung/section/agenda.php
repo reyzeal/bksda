@@ -48,7 +48,7 @@
                                             </time></div>
                                            <div class='col-10'>
                                                 <h3 class='font-weight-bold'>$card->judul</h3>
-                                                <p>$deskripsi <a href='/pengunjung/agenda.php?id=$card->id'>Baca selengkapnya..</a></p>
+                                                <p>$deskripsi <a href='../pengunjung/agenda.php?id=$card->id'>Baca selengkapnya..</a></p>
                                            </div>
                                         </div>";
 //                                    echo "<div class='card'>

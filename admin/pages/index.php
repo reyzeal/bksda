@@ -36,7 +36,7 @@ $res_kategori = mysqli_query($con, $query_kategori);
                </select>
                <script>
                    function redirect(e) {
-                       window.location.href='http://bksda2.localhost/admin/index.php?tahun='+$(e).val()
+                       window.location.href='../admin/index.php?tahun='+$(e).val()
                    }
                </script>
            </div>

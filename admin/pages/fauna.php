@@ -362,6 +362,8 @@ $no = 1;
            })
         });
     }
+
+
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuqp6YJymNF8Et7Xvd6SO3sBYqu2Bkc88" async defer></script>
 </div>
@@ -454,5 +456,20 @@ $no = 1;
           });
 
         });
+        $('#modal-form-tambah-fauna form, #modal-tambah-fauna form').submit(function (e) {
+            var children = $(this).find('select');
+            var error = false;
+            for (var i = 0; i < children.length;i++){
+                if(children.eq(i).val() == "Pilih Status") error = true;
+            }
+
+            if(error) {
+                alert('ada status yang masih belum dipilih');
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        });
     });
+
+
 </script>

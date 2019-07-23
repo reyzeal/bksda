@@ -177,7 +177,7 @@ $no = 1;
                 </div>
                   <div class="form-group">
                       <label>Gambar</label>
-                      <input class="form-control" name="gambar" type="file" accept="image/*" required>
+                      <input class="form-control" name="gambar" type="file" accept="image/*">
                   </div>
                   <div id="map"></div>
               </div>
@@ -225,7 +225,7 @@ $no = 1;
                             <p>Preview:</p>
                             <img id="preview">
                         </div>
-                        <input class="form-control" name="gambar" type="file" accept="image/*" required>
+                        <input class="form-control" name="gambar" type="file" accept="image/*">
                     </div>
                     <div id="map2" class="w-100" style="height: 400px;"></div>
                 </div>
@@ -392,7 +392,18 @@ $no = 1;
         //         that.data('win').open(map);
         //     });
     }
-
+    $('#modal-edit-area_konservasi form, #modal-tambah-area_konservasi form').submit(function (e) {
+        var children = $(this).find('input[readonly]');
+        var error = false;
+        for (var i = 0; i < children.length;i++){
+            if(!children.eq(i).val().length) error = true;
+        }
+        if(error) {
+            alert('Lokasi masih belum valid');
+            e.preventDefault();
+            e.stopPropagation();
+        }
+    })
 </script>
 <script>
     $(document).ready(function() {

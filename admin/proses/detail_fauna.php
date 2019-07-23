@@ -13,7 +13,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 	$data_fauna = mysqli_fetch_assoc($res);
 
-	$query_penyebaran_fauna = "SELECT penyebaran.id, penyebaran.lokasi_penyebaran, penyebaran.latitude, penyebaran.longitude, penyebaran.id_fauna, penyebaran.jumlah_fauna FROM penyebaran JOIN fauna ON penyebaran.id_fauna = fauna.id WHERE penyebaran.id_fauna = '$id'";
+	$query_penyebaran_fauna = "SELECT ow.* FROM detail_obyek_wisata 
+    INNER JOIN obyek_wisata ow on detail_obyek_wisata.id_wisata = ow.id
+    WHERE detail_obyek_wisata.id_fauna=$id";
 
 	$res = mysqli_query($con, $query_penyebaran_fauna);
 

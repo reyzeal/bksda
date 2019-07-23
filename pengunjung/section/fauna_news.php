@@ -95,6 +95,9 @@
                         <span target="status_konservasi_internasional"></span>
                     </div>
                 </div>
+                <div class="row">
+                    <div id="map" class="w-100" style="height: 300px;"></div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -119,8 +122,27 @@
                 $('[target=deskripsi]').html(data.deskripsi);
                 $('[target=gambar]').attr('src',data.gambar);
                 $('#faunaOverview').modal('show');
+
+                for(var i=0;i<data.persebaran.length;i++){
+                    var pos = new google.maps.LatLng(data.persebaran[i].latitude,data.persebaran[i].longitude);
+                    marker = new google.maps.Marker({
+                        position: pos,
+                        map: map,
+                    });
+                }
             }
         });
 
+    }
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuqp6YJymNF8Et7Xvd6SO3sBYqu2Bkc88&callback=initMap" async defer></script>
+<script>
+    var map;
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: -7.747270, lng: 110.355382},
+            zoom: 12
+        });
     }
 </script>

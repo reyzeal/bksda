@@ -24,3 +24,5 @@ if (isset($_POST['simpan'])) {
 		echo "Data gagal dimasukkan";
 	}
 }
+
+

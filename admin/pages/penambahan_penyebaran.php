@@ -38,7 +38,7 @@ $no = 1;
                                 <th>Nama Fauna</th>
                                 <th>Lokasi penambahan Fauna </th>
                                 <th>Jumlah Fauna</th>
-                                <!-- <th>Action</th> -->
+                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -46,12 +46,17 @@ $no = 1;
                                 $i = 0;
                                 foreach ($penambahan as $x){
                                     $i++;
+                                    $encoded = json_encode($x);
                                     echo "<tr>
                                         <td>$i</td>
                                         <td>$x->tanggal_penambahan</td>
                                         <td>$x->nama_fauna</td>
                                         <td>$x->lokasi</td>
                                         <td>$x->jumlah_penambahan</td>
+                                        <td>
+                                            <button data-toggle='modal' data-target='#modal-edit-penambahan' data='$encoded' class='btn btn-warning edit-penambahan'>Edit</button>
+                                            <a href='../admin/proses/simpan_penambahan2.php?hapus=$x->id' class='btn btn-danger hapus-penambahan'>Hapus</a>
+                                        </td>
                                     </tr>";
                                 }
                             ?>
@@ -77,7 +82,7 @@ $no = 1;
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form style="" role="form" method="POST" action="proses/simpan_penambahan2.php">
+      <form id="form-penambahan-tambah" style="" role="form" method="POST" action="proses/simpan_penambahan2.php">
         <div class="modal-body" style="height: 100%;">
           <div class="form-group">
             <label>Nama Lokasi Penyebaran</label>
@@ -100,7 +105,7 @@ $no = 1;
             </div>
           <div class="form-group">
             <label>Jumlah Fauna</label>
-            <input class="form-control" name="jumlah_fauna" type="text" required="">
+            <input class="form-control" name="jumlah_fauna" type="number" required="">
           </div>
         </div>
 
@@ -115,11 +120,60 @@ $no = 1;
     </div>
   </div>
 </div>
+
+<div style="" class="modal fade" id="modal-edit-penambahan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div style="" class="modal-dialog" role="document">
+        <div style="" class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Data penambahan</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="form-penambahan-edit" style="" role="form" method="POST" action="proses/simpan_penambahan2.php">
+                <div class="modal-body" style="height: 100%;">
+                    <div class="form-group">
+                        <label>Nama Lokasi Penyebaran <span class="show-edit-konservasi"></span></label>
+                    </div>
+                    <div class="form-group">
+                        <label>Fauna <span class="show-edit-fauna"></span></label>
+                    </div>
+                    <div class="form-group">
+                        <label>Waktu</label>
+                        <input class="form-control" name="waktu" type="date" required="">
+                    </div>
+                    <div class="form-group">
+                        <label>Jumlah Fauna</label>
+                        <input class="form-control" name="jumlah_fauna" type="number" required="">
+                    </div>
+                </div>
+
+                <input type="hidden" name="status" value="penambahan">
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" name="edit">Save</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
 <script src="../admin/js/flatpickr.min.js"></script>
+<script src="../admin/js/moment.js"></script>
 <script>
     flatpickr('[name=waktu]', {
         enableTime: true,
     });
+    $('#form-penambahan-tambah,#form-penambahan-edit').submit(function (e) {
+        var children = $(this).find('input[name=waktu]');
+        data = children.val();
+        if(!data.length && !moment(data,'YYYY/MM/DD h:mm:ss',true).isValid()) {
+            alert('Waktu masih belum valid');
+            e.preventDefault();
+            e.stopPropagation();
+        }
+    })
 </script>
 <script>
     $(document).ready(function() {
@@ -153,12 +207,22 @@ $no = 1;
             $('#modal-tambah-penambahan').modal('show');
             retrieve_fauna();
         });
+        $('.edit-penambahan').click(function(){
+            data = JSON.parse($(this).attr('data'));
+            $('.show-edit-fauna').text(data.nama_fauna);
+            $('.show-edit-konservasi').text(data.lokasi);
+            $('#form-penambahan-edit [name=waktu]').val(data.tanggal_penambahan);
+            $('#form-penambahan-edit [name=jumlah_fauna]').val(data.jumlah_penambahan);
+            // $('#form-edit-penambahan [name=alasan]').text(data.alasan);
+            $('#form-penambahan-edit [name=edit]').val(data.id);
+            $('#form-penambahan-edit').attr('action','../admin/proses/simpan_penambahan2.php?edit='+data.id);
+        });
 
-        $('.hapus-konservasi').click(function(e){
+        $('.hapus-penambahan').click(function(e){
             var hrf = $(this).attr('href');
             e.preventDefault();
             swal({
-                title: "Hapus Konservasi ini?",
+                title: "Hapus Data Penambahan ini?",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonClass: "btn-danger",
