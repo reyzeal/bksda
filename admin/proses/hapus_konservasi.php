@@ -1,7 +1,7 @@
 <?php 
 require '../konfigurasi/koneksi.php';
 require '../konfigurasi/DB.php';
-
+require 'session.php';
 $id = $_GET['id'];
 
 
@@ -12,9 +12,11 @@ if($old && file_exists("../$old")){
 }
 $res = mysqli_query($con, $sql);
 
-if ($res) {
-	header('location:../index.php?page=area_konservasi');
-}else{
-    die(mysqli_error($con));
+header('location:../index.php?page=area_konservasi');
+if($res){
+    $FLASH->success('Berhasil menghapus konservasi');
+}
+else{
+    $FLASH->error(mysqli_error($con));
 }
 ?>

@@ -1,6 +1,6 @@
 <?php
 require '../konfigurasi/koneksi.php';
-
+require 'session.php';
 if (isset($_POST['simpan'])) {
 
 	$nama_kategori = $_POST['fnama_kategori'];
@@ -9,12 +9,14 @@ if (isset($_POST['simpan'])) {
 	echo $sql;
 	$res = mysqli_query($con, $sql);
 
-	if ($res) {
-		header('location:../index.php?page=kategori');
+	header('location:../index.php?page=kategori');
+	if($res){
+		$FLASH->success('Berhasil menambah kategori');
 	}
 	else{
-		echo "Data gagal dimasukkan";
+		$FLASH->error(mysqli_error($con));
 	}
+
 
 }
 else if (isset($_POST['edit'])) {
@@ -25,11 +27,12 @@ else if (isset($_POST['edit'])) {
 
 	$res = mysqli_query($con, $sql);
 
-	if ($res) {
-		header('location:../index.php?page=kategori');
+	header('location:../index.php?page=kategori');
+	if($res){
+		$FLASH->success('Berhasil mengedit kategori');
 	}
 	else{
-		echo "Data gagal Diubah";
+		$FLASH->error(mysqli_error($con));
 	}
 }
 ?>

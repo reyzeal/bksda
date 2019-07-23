@@ -230,7 +230,7 @@ $tahun = $DATABASE->select("SELECT YEAR(tanggal_kematian) as tahun FROM kematian
         $msg = $_SESSION['message']['message'];
         echo "
             <script>
-              toastr.$type('$msg')  ;
+              toastr.$type('$msg');
             </script>
         ";
         unset($_SESSION['message']);

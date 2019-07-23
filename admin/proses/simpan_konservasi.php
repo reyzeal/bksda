@@ -1,6 +1,7 @@
 <?php 
 require '../konfigurasi/koneksi.php';
 require '../konfigurasi/DB.php';
+require 'session.php';
 
 if (isset($_POST['simpan'])) {
 	
@@ -21,13 +22,13 @@ if (isset($_POST['simpan'])) {
 	echo $sql;
 	$res = mysqli_query($con, $sql);
 
-	if ($res) {
-		header('location:../index.php?page=area_konservasi');
+	header('location:../index.php?page=area_konservasi');
+	if($res){
+		$FLASH->success('Berhasil menambah konservasi');
 	}
 	else{
-		echo "Data gagal dimasukkan";
+		$FLASH->error(mysqli_error($con));
 	}
-
 }
 
 if (isset($_POST['edit'])) {
@@ -55,11 +56,12 @@ if (isset($_POST['edit'])) {
 	$sql = "UPDATE obyek_wisata SET nama_wisata='$nama_wisata',lokasi='$lokasi',latitude='$latitude',longitude='$longitude',gambar='$gambar' where id=$id";
 	$res = mysqli_query($con, $sql);
 
-	if ($res) {
-		header('location:../index.php?page=area_konservasi');
+	header('location:../index.php?page=area_konservasi');
+	if($res){
+		$FLASH->success('Berhasil mengedit konservasi');
 	}
 	else{
-		echo "Data gagal dimasukkan :".mysqli_error($con);
+		$FLASH->error(mysqli_error($con));
 	}
 }
 

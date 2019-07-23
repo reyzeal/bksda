@@ -1,7 +1,7 @@
 <?php 
 require '../konfigurasi/koneksi.php';
 require '../konfigurasi/DB.php';
-
+require 'session.php';
 if (isset($_POST['simpan'])) {
 	$info = pathinfo($_FILES['gambar']['name']);
 	$ext = $info['extension'];
@@ -23,11 +23,12 @@ if (isset($_POST['simpan'])) {
 	echo $sql;
 	$res = mysqli_query($con, $sql);
 
-	if ($res) {
-		header('location:../index.php?page=fauna');
+	header('location:../index.php?page=fauna');
+	if($res){
+		$FLASH->success('Berhasil menambah fauna');
 	}
 	else{
-		echo "Data gagal dimasukkan";
+		$FLASH->error(mysqli_error($con));
 	}
 
 }
@@ -62,11 +63,12 @@ else if (isset($_POST['edit'])) {
 
 	$res = mysqli_query($con, $sql);
 
-	if ($res) {
-		header('location:../index.php?page=fauna');
+	header('location:../index.php?page=fauna');
+	if($res){
+		$FLASH->success('Berhasil menambah fauna');
 	}
 	else{
-		echo "Data gagal Diubah";
+		$FLASH->error(mysqli_error($con));
 	}
 }
  ?>

@@ -8,7 +8,11 @@ $sql = "DELETE FROM kategori WHERE id = '$id'";
 
 $res = mysqli_query($con, $sql);
 
-if ($res) {
-	header('location:../index.php?page=kategori');
+header('location:../index.php?page=kategori');
+if($res){
+    $FLASH->success('Berhasil menghapus kategori');
+}
+else{
+    $FLASH->error(mysqli_error($con));
 }
  ?>

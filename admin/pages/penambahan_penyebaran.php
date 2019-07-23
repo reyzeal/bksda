@@ -115,7 +115,7 @@ $no = 1;
     </div>
   </div>
 </div>
-<script src="/admin/js/flatpickr.min.js"></script>
+<script src="../admin/js/flatpickr.min.js"></script>
 <script>
     flatpickr('[name=waktu]', {
         enableTime: true,
@@ -129,7 +129,7 @@ $no = 1;
         function retrieve_fauna(){
             var id = $('[name=id_penyebaran]').val();
             $.ajax({
-                url : '/admin/proses/detail_obyek_wisata.php?id='+id,
+                url : '../admin/proses/detail_obyek_wisata.php?id='+id,
                 success:function (msg) {
                     str = '';
                     if(msg.data_fauna.length > 0){

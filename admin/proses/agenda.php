@@ -5,7 +5,9 @@
  *
  * module CRUD untuk Agenda
  */
+session_start();
 require '../konfigurasi/DB.php';
+require 'session.php';
 
 $judul = isset($_POST['judul'])?$_POST['judul']:null;
 $waktu = isset($_POST['waktu'])?$_POST['waktu']:null;
@@ -24,10 +26,12 @@ if(isset($_POST['simpan'])){
     $gambar = "../resources/$namabaru";
     $status = $DATABASE->query("INSERT INTO agenda VALUES (null,'$judul','$waktu','".$deskripsi."','$gambar')");
     if($status){
+        $FLASH->success('Berhasil menambahkan agenda');
         header('Location: ../../admin/index.php?page=agenda');
     }
     else{
-        die('gagal');
+        $FLASH->error($DATABASE->error);
+        header('Location: ../../admin/index.php?page=agenda');
     }
 }
 
@@ -55,10 +59,12 @@ if(isset($_GET['edit'])){
     }
     $status = $DATABASE->query("UPDATE agenda SET judul = '$judul', waktu = '$waktu', deskripsi = '".$deskripsi."', gambar='$gambar' WHERE id = $id");
     if($status){
+        $FLASH->success('Berhasil mengedit agenda');
         header('Location: ../../admin/index.php?page=agenda');
     }
     else{
-        die($DATABASE->error);
+        $FLASH->error($DATABASE->error);
+        header('Location: ../../admin/index.php?page=agenda');
     }
 }
 
@@ -75,9 +81,12 @@ if(isset($_GET['hapus'])){
     }
     $status = $DATABASE->query("DELETE FROM agenda WHERE id=$id");
     if($status){
+        $FLASH->success('Berhasil menghapus agenda');
         header('Location: ../../admin/index.php?page=agenda');
     }
     else{
-        die('gagal');
+        $FLASH->error($DATABASE->error);
+        header('Location: ../../admin/index.php?page=agenda');
     }
 }
+

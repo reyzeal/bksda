@@ -9,7 +9,7 @@ session_start();
 if(isset($_SESSION['login_status']) && $_SESSION['login_status']){
 
 }else{
-    header('Location: ../admin/login.php');
+    header('Location: ../../pengunjung');
 }
 class AUTH{
     public function isPrivilege($name){
@@ -21,3 +21,18 @@ class AUTH{
     }
 }
 $AUTH = new AUTH();
+class Flash{
+    public function success($msg){
+        $_SESSION['message'] = [
+            'type' => 'success',
+            'message' => $msg
+        ];
+    }
+    public function error($msg){
+        $_SESSION['message'] = [
+            'type' => 'error',
+            'message' => $msg
+        ];
+    }
+}
+$FLASH = new Flash();

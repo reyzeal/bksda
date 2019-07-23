@@ -22,14 +22,14 @@ if(isset($_POST['simpan'])){
     if($password == $confirm){
         $status = $DATABASE->query("INSERT INTO akun VALUES (null,'$username','$email','$password','$privilege')");
     }else{
-        die('password dan confirm tidak sama');
+        $FLASH->error('password dan confirm tidak sama');
     }
-
+    header('Location: ../../admin/index.php?page=akun');
     if($status){
-        header('Location: ../../admin/index.php?page=akun');
+        $FLASH->success('Berhasil menambahkan akun');
     }
     else{
-        die($DATABASE->error);
+        $FLASH->error($DATABASE->error);
     }
 }
 
@@ -46,11 +46,12 @@ if(isset($_GET['edit'])){
         die('password dan confirm tidak sama');
     }
 
+    header('Location: ../../admin/index.php?page=akun');
     if($status){
-        header('Location: ../../admin/index.php?page=akun');
+        $FLASH->success('Berhasil mengedit akun');
     }
     else{
-        die('gagal');
+        $FLASH->error($DATABASE->error);
     }
 }
 
@@ -62,10 +63,11 @@ if(isset($_GET['edit'])){
 if(isset($_GET['hapus'])){
     $id = $_GET['hapus'];
     $status = $DATABASE->query("DELETE FROM akun WHERE id=$id");
+    header('Location: ../../admin/index.php?page=akun');
     if($status){
-        header('Location: ../../admin/index.php?page=akun');
+        $FLASH->success('Berhasil menghapus akun');
     }
     else{
-        die('gagal');
+        $FLASH->error($DATABASE->error);
     }
 }
