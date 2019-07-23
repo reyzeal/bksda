@@ -7,7 +7,7 @@
  */
 require 'konfigurasi/DB.php';
 require 'proses/session.php';
-if(!isset($_GET['id'])) header('Location: /pengunjung');
+if(!isset($_GET['id'])) header('Location: ../pengunjung');
 $id = $_GET['id'];
 $data = $DATABASE->select("SELECT * FROM agenda WHERE id=$id");
 if(count($data)){
@@ -67,10 +67,10 @@ if(count($data)){
 
         <nav id="nav-menu-container">
             <ul class="nav-menu d-flex">
-                <li class="menu-active"><a href="/pengunjung#intro" style="font-size:16px">Home</a></li>
-                <li><a href="/pengunjung#about" style="font-size:16px">About Us</a></li>
-                <li><a href="/pengunjung#agenda" style="font-size:16px">Agenda</a></li>
-                <li><a href="/pengunjung#news" style="font-size:16px">News</a></li>
+                <li class="menu-active"><a href="../pengunjung#intro" style="font-size:16px">Home</a></li>
+                <li><a href="../pengunjung#about" style="font-size:16px">About Us</a></li>
+                <li><a href="../pengunjung#agenda" style="font-size:16px">Agenda</a></li>
+                <li><a href="../pengunjung#news" style="font-size:16px">News</a></li>
                 <li><a href="#contact" style="font-size:16px">Contact Us</a></li>
                 <?php
                 if($AUTH->get()){
@@ -185,6 +185,42 @@ if(count($data)){
 
 <!-- Template Main Javascript File -->
 <script src="js/main.js"></script>
-
+<script>
+    var current = 0;
+    var max = 0;
+    function getData(page=0) {
+        $.ajax({
+            url : 'proses/agenda.php?agenda_page='+page,
+            success:function (msg) {
+                // var data = JSON.parse(msg);
+                data = msg;
+                $('#card').html(data.card);
+                $('#carousel').html(data.carousel);
+                $('#carouselContent').html(data.carouselContent);
+                max = data.max;
+                $('#currentPage').text((current+1)+'/'+max);
+            }
+        });
+    }
+    getData();
+    function nextAgenda() {
+        if(current < max)
+            getData(++current);
+        if(current == max-1){
+            $('#nextAgenda').parent().addClass('disabled');
+        }else{
+            $('#prevAgenda').parent().removeClass('disabled');
+        }
+    }
+    function prevAgenda() {
+        if(current > 0)
+            getData(--current);
+        if(current == 0){
+            $('#prevAgenda').parent().addClass('disabled');
+        }else{
+            $('#nextAgenda').parent().removeClass('disabled');
+        }
+    }
+</script>
 </body>
 </html>
