@@ -221,6 +221,42 @@
         unset($_SESSION['message']);
     }
 ;?>
-
+<script>
+    var current = 0;
+    var max = 0;
+    function getData(page=0) {
+        $.ajax({
+            url : 'proses/agenda.php?agenda_page='+page,
+            success:function (msg) {
+                // var data = JSON.parse(msg);
+                data = msg;
+                $('#card').html(data.card);
+                $('#carousel').html(data.carousel);
+                $('#carouselContent').html(data.carouselContent);
+                max = data.max;
+                $('#currentPage').text((current+1)+'/'+max);
+            }
+        });
+    }
+    getData();
+    function nextAgenda() {
+        if(current < max)
+            getData(++current);
+        if(current == max-1){
+            $('#nextAgenda').parent().addClass('disabled');
+        }else{
+            $('#prevAgenda').parent().removeClass('disabled');
+        }
+    }
+    function prevAgenda() {
+        if(current > 0)
+            getData(--current);
+        if(current == 0){
+            $('#prevAgenda').parent().addClass('disabled');
+        }else{
+            $('#nextAgenda').parent().removeClass('disabled');
+        }
+    }
+</script>
 </body>
 </html>
