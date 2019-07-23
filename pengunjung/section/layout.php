@@ -34,6 +34,7 @@
     <!-- Main Stylesheet File -->
     <link href="css/style.css" rel="stylesheet">
     <link href="css/calendar.css" rel="stylesheet">
+    <link href="lib/toastr/toastr.min.css" rel="stylesheet">
 
     <!-- =======================================================
       Theme Name: Avilon
@@ -201,12 +202,25 @@
 <script src="lib/superfish/hoverIntent.js"></script>
 <script src="lib/superfish/superfish.min.js"></script>
 <script src="lib/magnific-popup/magnific-popup.min.js"></script>
+<script src="lib/toastr/toastr.min.js"></script>
 
 <!-- Contact Form JavaScript File -->
 <script src="contactform/contactform.js"></script>
 
 <!-- Template Main Javascript File -->
 <script src="js/main.js"></script>
+<?php
+    if(isset($_SESSION['message']) && $_SESSION['message']){
+        $type = $_SESSION['message']['type'];
+        $msg = $_SESSION['message']['message'];
+        echo "
+            <script>
+              toastr.$type('$msg')  ;
+            </script>
+        ";
+        unset($_SESSION['message']);
+    }
+;?>
 
 </body>
 </html>

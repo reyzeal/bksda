@@ -37,6 +37,7 @@ $tahun = $DATABASE->select("SELECT YEAR(tanggal_kematian) as tahun FROM kematian
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="assets/mycss.css">
+    <link rel="stylesheet" type="text/css" href="js/toastr/toastr.min.css">
 
     <!-- TEST -->
     <!-- <script src="assets/www/js/echarts.js"></script>
@@ -222,6 +223,19 @@ $tahun = $DATABASE->select("SELECT YEAR(tanggal_kematian) as tahun FROM kematian
     <!-- <script src="assets/asset/js/bootstrap.min.js"></script> -->
     <!-- <script src="assets/asset/js/echartsExample.js"></script> -->
     <script src="assets/canvasjs.min.js"></script>
+    <script src="js/toastr/toastr.min.js"></script>
+    <?php
+    if(isset($_SESSION['message']) && $_SESSION['message']){
+        $type = $_SESSION['message']['type'];
+        $msg = $_SESSION['message']['message'];
+        echo "
+            <script>
+              toastr.$type('$msg')  ;
+            </script>
+        ";
+        unset($_SESSION['message']);
+    }
+    ;?>
 </body>
 
 </html>
