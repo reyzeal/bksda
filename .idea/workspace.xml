@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8935ffe4-c2a5-42c6-96d6-9b945c9f2844" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/pengunjung/proses/agenda.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pengunjung/section/agenda.php" beforeDir="false" afterPath="$PROJECT_DIR$/pengunjung/section/agenda.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pengunjung/section/layout.php" beforeDir="false" afterPath="$PROJECT_DIR$/pengunjung/section/layout.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/proses/persebaran.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/proses/persebaran.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -64,12 +62,21 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pengunjung/agenda.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="69" column="29" lean-forward="true" selection-start-line="69" selection-start-column="29" selection-end-line="69" selection-end-column="29" />
+            <state relative-caret-position="296">
+              <caret line="22" column="24" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
               <folding>
                 <element signature="n#style#0;n#button#0;n#li#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#button#0;n#li#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/admin/proses/persebaran.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="328">
+              <caret line="38" column="36" lean-forward="true" selection-start-line="38" selection-start-column="36" selection-end-line="38" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -83,11 +90,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pengunjung/section/layout.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="233">
-              <caret line="241" column="27" lean-forward="true" selection-start-line="241" selection-start-column="27" selection-end-line="241" selection-end-column="27" />
+            <state relative-caret-position="243">
+              <caret line="223" lean-forward="true" selection-start-line="223" selection-end-line="259" selection-end-column="9" />
               <folding>
                 <element signature="e#6#87#0#PHP" expanded="true" />
                 <element signature="n#style#0;n#button#0;n#li#0;n#!!top" expanded="true" />
@@ -133,15 +140,6 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin/proses/simpan_konservasi.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="30" column="29" selection-start-line="30" selection-start-column="29" selection-end-line="30" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -183,6 +181,7 @@
       <find>edit</find>
       <find>required</find>
       <find>\&quot;</find>
+      <find>/pengunjung</find>
     </findStrings>
     <replaceStrings>
       <replace>fauna</replace>
@@ -212,7 +211,6 @@
         <option value="$PROJECT_DIR$/admin/laporan/cetakallarea.php" />
         <option value="$PROJECT_DIR$/admin/pages/penyebaran.php" />
         <option value="$PROJECT_DIR$/admin/konfigurasi/DB.php" />
-        <option value="$PROJECT_DIR$/admin/proses/persebaran.php" />
         <option value="$PROJECT_DIR$/admin/logout.php" />
         <option value="$PROJECT_DIR$/../../apache/conf/extra/httpd-vhosts.conf" />
         <option value="$PROJECT_DIR$/index.php" />
@@ -240,7 +238,6 @@
         <option value="$PROJECT_DIR$/admin/proses/session.php" />
         <option value="$PROJECT_DIR$/admin/index.php" />
         <option value="$PROJECT_DIR$/admin/proses/akun.php" />
-        <option value="$PROJECT_DIR$/pengunjung/agenda.php" />
         <option value="$PROJECT_DIR$/pengunjung/proses/fauna.php" />
         <option value="$PROJECT_DIR$/pengunjung/section/fauna_news.php" />
         <option value="$PROJECT_DIR$/admin/pages/area_konservasi.php" />
@@ -250,6 +247,8 @@
         <option value="$PROJECT_DIR$/pengunjung/proses/agenda.php" />
         <option value="$PROJECT_DIR$/pengunjung/section/agenda.php" />
         <option value="$PROJECT_DIR$/pengunjung/section/layout.php" />
+        <option value="$PROJECT_DIR$/pengunjung/agenda.php" />
+        <option value="$PROJECT_DIR$/admin/proses/persebaran.php" />
       </list>
     </option>
   </component>
@@ -398,7 +397,7 @@
       <workItem from="1563520334373" duration="22264000" />
       <workItem from="1563681489265" duration="55188000" />
       <workItem from="1563863096953" duration="3580000" />
-      <workItem from="1563870131971" duration="14255000" />
+      <workItem from="1563870131971" duration="15294000" />
     </task>
     <task id="LOCAL-00001" summary="done">
       <created>1563809942907</created>
@@ -407,11 +406,25 @@
       <option name="project" value="LOCAL" />
       <updated>1563809942907</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="agenda di pengunjung menjadi paginasi">
+      <created>1563886051294</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1563886051294</updated>
+    </task>
+    <task id="LOCAL-00003" summary="agenda di pengunjung menjadi paginasi">
+      <created>1563886351209</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1563886351209</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="96392000" />
+    <option name="totallyTimeSpent" value="97431000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -466,7 +479,8 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <MESSAGE value="done" />
-    <option name="LAST_COMMIT_MESSAGE" value="done" />
+    <MESSAGE value="agenda di pengunjung menjadi paginasi" />
+    <option name="LAST_COMMIT_MESSAGE" value="agenda di pengunjung menjadi paginasi" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/../../apache/conf/extra/httpd-vhosts.conf" />
@@ -614,13 +628,6 @@
     <entry file="file://$PROJECT_DIR$/admin/proses/penyebaran_fauna.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/proses/persebaran.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="77" column="31" selection-start-line="77" selection-start-column="31" selection-end-line="77" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/admin/proses/simpan_detail.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -759,17 +766,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pengunjung/agenda.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="69" column="29" lean-forward="true" selection-start-line="69" selection-start-column="29" selection-end-line="69" selection-end-column="29" />
-          <folding>
-            <element signature="n#style#0;n#button#0;n#li#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#li#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pengunjung/section/agenda.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="291">
@@ -797,13 +793,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pengunjung/section/layout.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="241" column="27" lean-forward="true" selection-start-line="241" selection-start-column="27" selection-end-line="241" selection-end-column="27" />
+        <state relative-caret-position="243">
+          <caret line="223" lean-forward="true" selection-start-line="223" selection-end-line="259" selection-end-column="9" />
           <folding>
             <element signature="e#6#87#0#PHP" expanded="true" />
             <element signature="n#style#0;n#button#0;n#li#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#0;n#li#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pengunjung/agenda.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="22" column="24" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
+          <folding>
+            <element signature="n#style#0;n#button#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#li#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/proses/persebaran.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="38" column="36" lean-forward="true" selection-start-line="38" selection-start-column="36" selection-end-line="38" selection-end-column="36" />
         </state>
       </provider>
     </entry>

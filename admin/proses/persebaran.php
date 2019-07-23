@@ -8,11 +8,12 @@ $tahun = isset($_GET['tahun'])?$_GET['tahun']:null;
 if(!$tahun){
     for($i=-12;$i<1;$i++){
         $j = $i+1;
+
         $year = date("Y",strtotime("$j months"));
         $month = date("m",strtotime("$j months"));
-        $awal = date("Y-m-d H:i:s",strtotime("$i months"));
-        $akhir = date("Y-m-d H:i:s",strtotime("$j months"));
 
+        $awal = date("Y-m-d 00:00:00",strtotime("first day of $i months"));
+        $akhir = date("Y-m-d 23:59:59",strtotime("last day of $i months"));
         $temp = [];
         $temp['date']=[$month,$year];
         $sql = "SELECT sum(jumlah_kematian) as total FROM kematian_fauna WHERE tanggal_kematian BETWEEN '$awal' AND '$akhir'";
@@ -54,13 +55,13 @@ function kematian(){
     $string = '';
     if(isset($_GET['tahun']) && $_GET['tahun'] ){
         foreach ($hasil as $x){
-            $m = $x['date'][0];
+            $m = $x['date'][0]-1;
             $y = $x['date'][1];
             $string .= "{ x: new Date($y, $m), y: $x[kematian] },";
         }
     }else{
         foreach ($hasil as $x){
-            $m = $x['date'][0]-1;
+            $m = $x['date'][0]-2;
             $y = $x['date'][1];
             $string .= "{ x: new Date($y, $m), y: $x[kematian] },";
         }
@@ -73,13 +74,13 @@ function penambahan(){
     $string = '';
     if(isset($_GET['tahun']) && $_GET['tahun']){
         foreach ($hasil as $x){
-            $m = $x['date'][0];
+            $m = $x['date'][0]-1;
             $y = $x['date'][1];
             $string .= "{ x: new Date($y, $m), y: $x[penambahan] },";
         }
     }else{
         foreach ($hasil as $x){
-            $m = $x['date'][0]-1;
+            $m = $x['date'][0]-2;
             $y = $x['date'][1];
             $string .= "{ x: new Date($y, $m), y: $x[penambahan] },";
         }
