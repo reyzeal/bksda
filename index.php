@@ -7,7 +7,7 @@
  */
 session_start();
 if(isset($_SESSION['login_status']) && $_SESSION['login_status']){
-    header('Location: /admin');
+    header('Location: admin');
 }else{
-    header('Location: /pengunjung');
+    header('Location: pengunjung');
 }

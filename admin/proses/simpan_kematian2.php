@@ -10,7 +10,7 @@ $status = $_POST['status'];
 if (isset($_POST['simpan'])) {
     $x = $DATABASE->query("INSERT INTO kematian_fauna(jumlah_kematian, tanggal_kematian, alasan, id_penyebaran) VALUES($jumlah,'$waktu','$alasan',$id_penyebaran)");
     if($x){
-        header('Location: /admin/index.php?page=kematian_penyebaran');
+        header('Location: ../admin/index.php?page=kematian_penyebaran');
     }else{
         die($x);
     }

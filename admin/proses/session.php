@@ -9,7 +9,7 @@ session_start();
 if(isset($_SESSION['login_status']) && $_SESSION['login_status']){
 
 }else{
-    header('Location: /admin/login.php');
+    header('Location: ../admin/login.php');
 }
 class AUTH{
     public function isPrivilege($name){
