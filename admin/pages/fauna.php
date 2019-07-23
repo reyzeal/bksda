@@ -263,7 +263,7 @@ $no = 1;
               <label>Gambar</label>
               <div class="p-3">
                   <p>Preview:</p>
-                  <img id="preview">
+                  <img id="preview" class="img-responsive">
               </div>
               <input class="form-control" name="gambar" type="file" accept="image/*">
           </div>

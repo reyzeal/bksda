@@ -22,7 +22,7 @@
                             <div class="row">
                                 <?php
                                 foreach ($data as $animal){
-                                    $gambar = $animal->gambar?$animal->gambar:'/pengunjung/img/unknown.jpg';
+                                    $gambar = $animal->gambar?$animal->gambar:'../pengunjung/img/unknown.jpg';
                                     ?>
                                     <div class="col-md-3 col-3 text-center p-2" onclick="faunaOverview(<?=$animal->id;?>)">
                                         <img width="100" height="100" src="<?=$gambar;?>" style="object-fit: cover;">
@@ -106,7 +106,7 @@
 <script>
     function faunaOverview(id) {
         $.ajax({
-            url:'/pengunjung/proses/fauna.php?id='+id,
+            url:'../pengunjung/proses/fauna.php?id='+id,
             success:function (msg) {
                 var data = JSON.parse(msg);
                 $('[target=nama]').html(data.nama_fauna);

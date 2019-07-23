@@ -21,10 +21,10 @@ if(isset($_POST['simpan'])){
     $namabaru = md5(date('Y-m-d H:i:s')).".$ext";
     move_uploaded_file($_FILES['gambar']['tmp_name'],"../../resources/$namabaru");
 
-    $gambar = "/resources/$namabaru";
+    $gambar = "../resources/$namabaru";
     $status = $DATABASE->query("INSERT INTO agenda VALUES (null,'$judul','$waktu','".$deskripsi."','$gambar')");
     if($status){
-        header('Location: ../admin/index.php?page=agenda');
+        header('Location: ../../admin/index.php?page=agenda');
     }
     else{
         die('gagal');
@@ -45,17 +45,17 @@ if(isset($_GET['edit'])){
         $namabaru = md5(date('Y-m-d H:i:s')).".$ext";
         move_uploaded_file($_FILES['gambar']['tmp_name'],"../../resources/$namabaru");
 
-        $gambar = "/resources/$namabaru";
+        $gambar = "../resources/$namabaru";
 
-        if($old && file_exists("../../$old")){
-            unlink("../../$old");
+        if($old && file_exists("../$old")){
+            unlink("../$old");
         }
     }else{
         $gambar = $old;
     }
     $status = $DATABASE->query("UPDATE agenda SET judul = '$judul', waktu = '$waktu', deskripsi = '".$deskripsi."', gambar='$gambar' WHERE id = $id");
     if($status){
-        header('Location: ../admin/index.php?page=agenda');
+        header('Location: ../../admin/index.php?page=agenda');
     }
     else{
         die($DATABASE->error);
@@ -70,12 +70,12 @@ if(isset($_GET['edit'])){
 if(isset($_GET['hapus'])){
     $id = $_GET['hapus'];
     $old = $DATABASE->select("SELECT gambar FROM agenda WHERE id='$id'")[0]->gambar;
-    if($old && file_exists("../../$old")){
-        unlink("../../$old");
+    if($old && file_exists("../$old")){
+        unlink("../$old");
     }
     $status = $DATABASE->query("DELETE FROM agenda WHERE id=$id");
     if($status){
-        header('Location: ../admin/index.php?page=agenda');
+        header('Location: ../../admin/index.php?page=agenda');
     }
     else{
         die('gagal');

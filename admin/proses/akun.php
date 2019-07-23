@@ -26,10 +26,10 @@ if(isset($_POST['simpan'])){
     }
 
     if($status){
-        header('Location: ../admin/index.php?page=akun');
+        header('Location: ../../admin/index.php?page=akun');
     }
     else{
-        die('gagal');
+        die($DATABASE->error);
     }
 }
 
@@ -47,7 +47,7 @@ if(isset($_GET['edit'])){
     }
 
     if($status){
-        header('Location: ../admin/index.php?page=akun');
+        header('Location: ../../admin/index.php?page=akun');
     }
     else{
         die('gagal');
@@ -63,7 +63,7 @@ if(isset($_GET['hapus'])){
     $id = $_GET['hapus'];
     $status = $DATABASE->query("DELETE FROM akun WHERE id=$id");
     if($status){
-        header('Location: ../admin/index.php?page=akun');
+        header('Location: ../../admin/index.php?page=akun');
     }
     else{
         die('gagal');

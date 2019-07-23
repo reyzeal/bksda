@@ -14,7 +14,7 @@ if (isset($_POST['simpan'])) {
 	$ext = $info['extension'];
 	$namabaru = md5(date('Y-m-d H:i:s')).".$ext";
 	move_uploaded_file($_FILES['gambar']['tmp_name'],"../../resources/$namabaru");
-	$gambar = "/resources/$namabaru";
+	$gambar = "../resources/$namabaru";
 
 
 	$sql = "INSERT INTO obyek_wisata(nama_wisata, lokasi, latitude, longitude,gambar) VALUES ('$nama_wisata', '$lokasi','$latitude','$longitude','$gambar')";
@@ -43,10 +43,10 @@ if (isset($_POST['edit'])) {
 		$namabaru = md5(date('Y-m-d H:i:s')).".$ext";
 		move_uploaded_file($_FILES['gambar']['tmp_name'],"../../resources/$namabaru");
 
-		$gambar = "/resources/$namabaru";
+		$gambar = "../resources/$namabaru";
 
-		if($old && file_exists("../../$old")){
-			unlink("../../$old");
+		if($old && file_exists("../$old")){
+			unlink("../$old");
 		}
 	}else{
 		$gambar = $old;

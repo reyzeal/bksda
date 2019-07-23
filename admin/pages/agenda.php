@@ -48,7 +48,7 @@ $data = $DATABASE->select('SELECT * FROM agenda');
                                  <td>$agenda->waktu</td>
                                  <td>
                                      <button type='button' class='edit-agenda btn btn-warning' data='$encoded'>Edit</button>
-                                     <button href='/admin/proses/agenda.php?hapus=$agenda->id' class='hapus-agenda btn btn-danger'>Delete</button>
+                                     <button href='../admin/proses/agenda.php?hapus=$agenda->id' class='hapus-agenda btn btn-danger'>Delete</button>
                                  </td>
                              </tr>";
                             };?>
@@ -104,9 +104,9 @@ $data = $DATABASE->select('SELECT * FROM agenda');
 </div>
 <!-- Modal -->
 <!-- Modal -->
-<div style="height: 100%;" class="modal fade" id="modal-edit-agenda" tabindex="-1" role="dialog" aria-hidden="true">
-    <div style="height: 100%;" class="modal-dialog" role="document">
-        <div style="height: 100%;" class="modal-content">
+<div style="min-height: 100%;" class="modal fade" id="modal-edit-agenda" tabindex="-1" role="dialog" aria-hidden="true">
+    <div style="min-height: 100%;" class="modal-dialog" role="document">
+        <div style="min-height: 100%;" class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Edit Agenda</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -145,7 +145,7 @@ $data = $DATABASE->select('SELECT * FROM agenda');
     </div>
 </div>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuqp6YJymNF8Et7Xvd6SO3sBYqu2Bkc88&callback=initMap" async defer></script>
-<script src="/admin/js/flatpickr.min.js"></script>
+<script src="../admin/js/flatpickr.min.js"></script>
 <script>
     flatpickr('[name=waktu]', {});
 </script>
@@ -194,7 +194,7 @@ $data = $DATABASE->select('SELECT * FROM agenda');
             $('#modal-edit-agenda [name=deskripsi]').val(data.deskripsi);
             $('#modal-edit-agenda #preview').attr('src',data.gambar);
 
-            $('#modal-edit-agenda form').attr('action', '/admin/proses/agenda.php?edit='+data.id);
+            $('#modal-edit-agenda form').attr('action', '../admin/proses/agenda.php?edit='+data.id);
         });
 
 

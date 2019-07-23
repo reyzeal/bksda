@@ -66,7 +66,7 @@
                 <li><a href="#contact" style="font-size:16px">Contact Us</a></li>
                 <?php
                     if($AUTH->get()){
-                        echo "<li><button onclick='window.open(\"/admin\")' class=\"btn btn-warning\" href='/admin' style=\"color:white;font-size:16px\"></span>&nbsp ADMIN  &nbsp</button></li>";
+                        echo "<li><button onclick='window.open(\"../admin\")' class=\"btn btn-warning\" href='/admin' style=\"color:white;font-size:16px\"></span>&nbsp ADMIN  &nbsp</button></li>";
                     }else{
                         echo "<li><button class=\"btn btn-warning\" data-toggle=\"modal\" data-target=\"#modal-form-login\" style=\"color:white;font-size:16px\"></span>&nbsp LOGIN  &nbsp</button></li>";
                     };

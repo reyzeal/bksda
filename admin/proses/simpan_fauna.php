@@ -8,7 +8,7 @@ if (isset($_POST['simpan'])) {
 	$namabaru = md5(date('Y-m-d H:i:s')).".$ext";
 	move_uploaded_file($_FILES['gambar']['tmp_name'],"../../resources/$namabaru");
 
-	$gambar = "/resources/$namabaru";
+	$gambar = "../resources/$namabaru";
 	$nama_fauna = $_POST['fnama_fauna'];
 	$spesies = $_POST['fspesies'];
 	$deskripsi = htmlentities($_POST['fdeskripsi']);
@@ -40,10 +40,10 @@ else if (isset($_POST['edit'])) {
 		$namabaru = md5(date('Y-m-d H:i:s')).".$ext";
 		move_uploaded_file($_FILES['gambar']['tmp_name'],"../../resources/$namabaru");
 
-		$gambar = "/resources/$namabaru";
+		$gambar = "../resources/$namabaru";
 
-		if($old && file_exists("../../$old")){
-			unlink("../../$old");
+		if($old && file_exists("../$old")){
+			unlink("../$old");
 		}
 	}else{
 		$gambar = $old;

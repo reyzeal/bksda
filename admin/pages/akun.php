@@ -50,7 +50,7 @@ $data = $DATABASE->select('SELECT * FROM akun');
                                  <td>$akun->privilege</td>
                                  <td>
                                      <button type='button' class='edit-akun btn btn-warning' data='$encoded'>Edit</button>
-                                     <button href='/admin/proses/akun.php?hapus=$akun->id' class='hapus-akun btn btn-danger'>Delete</button>
+                                     <button href='../admin/proses/akun.php?hapus=$akun->id' class='hapus-akun btn btn-danger'>Delete</button>
                                  </td>
                              </tr>";
                             };?>
@@ -202,7 +202,7 @@ $data = $DATABASE->select('SELECT * FROM akun');
             $('#modal-edit-akun [name=password]').val(data.password);
             $('#modal-edit-akun [name=confirm]').val(data.password);
 
-            $('#modal-edit-akun form').attr('action', '/admin/proses/akun.php?edit='+data.id);
+            $('#modal-edit-akun form').attr('action', '../admin/proses/akun.php?edit='+data.id);
         });
 
 

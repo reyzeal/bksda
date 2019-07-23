@@ -9,7 +9,7 @@ require_once 'konfigurasi/DB.php';
 $id = $_GET['id'];
 $sql_konservasi = "SELECT obyek_wisata.id, obyek_wisata.nama_wisata, obyek_wisata.gambar, obyek_wisata.lokasi, obyek_wisata.latitude, obyek_wisata.longitude FROM obyek_wisata WHERE id = '$id'";
 
-$sql_fauna = "SELECT detail_obyek_wisata.id_wisata as 'id', fauna.nama_fauna as 'nama', detail_obyek_wisata.jumlah_fauna as 'jumlah' FROM detail_obyek_wisata INNER JOIN fauna ON fauna.id = detail_obyek_wisata.id_fauna WHERE detail_obyek_wisata.id_wisata = '$id'";
+$sql_fauna = "SELECT detail_obyek_wisata.id as 'oid',detail_obyek_wisata.id_wisata as 'id', fauna.nama_fauna as 'nama', detail_obyek_wisata.jumlah_fauna as 'jumlah' FROM detail_obyek_wisata INNER JOIN fauna ON fauna.id = detail_obyek_wisata.id_fauna WHERE detail_obyek_wisata.id_wisata = '$id'";
 $data_konservasi = $DATABASE->select($sql_konservasi);
 $data_konservasi = $data_konservasi[0];
 $data_fauna = $DATABASE->select($sql_fauna);
@@ -99,7 +99,7 @@ $data_daftar_fauna = $DATABASE->select($sql_daftar_fauna);
                                  <td>$fauna->jumlah</td>
                                  <td>
                                      <button type='button' class='edit-fauna btn btn-warning' data='$encoded'>Edit</button>
-                                     <button href='/admin/proses/fauna_konservasi.php?hapus=$fauna->id' class='hapus-fauna btn btn-danger'>Delete</button>
+                                     <button href='../admin/proses/fauna_konservasi.php?hapus=$fauna->oid&redirect=$fauna->id' class='hapus-fauna btn btn-danger'>Delete</button>
                                  </td>
                              </tr>";
                         };?>
@@ -164,20 +164,12 @@ $data_daftar_fauna = $DATABASE->select($sql_daftar_fauna);
             <form style="" role="form" method="POST" action="proses/fauna.php">
                 <div class="modal-body" style="height: 100%;">
                     <div class="form-group">
-                        <label>Nama fauna</label>
-                        <input class="form-control" name="judul" type="text" required="">
-                    </div>
-                    <div class="form-group">
-                        <label>Waktu</label>
-                        <input class="form-control" name="waktu" type="text" required="">
-                    </div>
-                    <div class="form-group">
-                        <label>Deskripsi</label>
-                        <textarea class="form-control" name="deskripsi" type="text" required=""></textarea>
+                        <label>Jumlah Fauna <span edit-name="fauna"></span></label>
+                        <input class="form-control" name="jumlah" type="text" required="">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="submit" class="btn btn-primary" name="edit">Save</button>
                     </div>
                 </div>
             </form>
@@ -228,12 +220,11 @@ $data_daftar_fauna = $DATABASE->select($sql_daftar_fauna);
         $('.edit-fauna').click(function(){
             $('#modal-edit-fauna').modal('show');
             var data = JSON.parse($(this).attr('data'));
-            // console.log(data);
-            $('#modal-edit-fauna [name=judul]').val(data.judul);
-            $('#modal-edit-fauna [name=waktu]').val(data.waktu);
-            $('#modal-edit-fauna [name=deskripsi]').val(data.deskripsi);
+            console.log(data);
+            $('#modal-edit-fauna [name=jumlah]').val(data.jumlah);
+            $('#modal-edit-fauna [edit-name=fauna]').text(data.nama);
 
-            $('#modal-edit-fauna form').attr('action', '/admin/proses/fauna_konservasi.php?edit='+data.id);
+            $('#modal-edit-fauna form').attr('action', '../admin/proses/fauna_konservasi.php?edit='+data.oid+'&redirect='+data.id);
         });
 
 

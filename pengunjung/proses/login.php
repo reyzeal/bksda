@@ -13,15 +13,15 @@ if (isset($_POST['login'])) {
 	//$result = mysqli_query($con, $query); //eksekusi query
 
 	//$num = mysqli_num_rows($result);
-
+//	die(count($status).' ');
 	if (count($status)) {
 		//login berhasil
-		header('location:../../admin/index.php');
+		header('Location: ../../admin/index.php');
 		$_SESSION['login_status'] = 1;
 		$_SESSION['auth'] = serialize($status);
 	} else {
 		//login gagal
-		header('location:../login.php');
+		header('Location: ../../pengunjung');
 		$_SESSION['login_status'] = 0;
 		$_SESSION['auth'] = serialize(null);
 	}
