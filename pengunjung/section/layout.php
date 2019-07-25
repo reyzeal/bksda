@@ -234,7 +234,11 @@
                 $('#carousel').html(data.carousel);
                 $('#carouselContent').html(data.carouselContent);
                 max = data.max;
-                $('#currentPage').text((current+1)+'/'+max);
+                if(max > 0 )
+                    $('#currentPage').text((current+1)+'/'+max);
+                else
+                    $('#currentPage').text((current)+'/'+max);
+                check();
             }
         });
     }
@@ -242,19 +246,23 @@
     function nextAgenda() {
         if(current < max)
             getData(++current);
-        if(current == max-1){
-            $('#nextAgenda').parent().addClass('disabled');
-        }else{
-            $('#prevAgenda').parent().removeClass('disabled');
-        }
+        check();
     }
     function prevAgenda() {
         if(current > 0)
             getData(--current);
-        if(current == 0){
-            $('#prevAgenda').parent().addClass('disabled');
+        check();
+    }
+    function check() {
+        if(current >= max-1){
+            $('#nextAgenda').parent().addClass('disabled');
         }else{
             $('#nextAgenda').parent().removeClass('disabled');
+        }
+        if(current <= 0){
+            $('#prevAgenda').parent().addClass('disabled');
+        }else{
+            $('#prevAgenda').parent().removeClass('disabled');
         }
     }
 </script>

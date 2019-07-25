@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 23, 2019 at 11:10 AM
+-- Generation Time: Jul 25, 2019 at 09:10 AM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.7
 
@@ -41,8 +41,9 @@ CREATE TABLE `agenda` (
 --
 
 INSERT INTO `agenda` (`id`, `judul`, `waktu`, `deskripsi`, `gambar`) VALUES
-(6, 'Extended Kalman Filter', '2019-07-01', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '../resources/42cd0c2ea1ac904ff0297b558b4af571.jpg'),
-(7, 'Mencoba', '2019-08-23', 'Why do we use it?\r\nIt is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &#039;Content here, content here&#039;, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for &#039;lorem ipsum&#039; will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', '../resources/a7bc33126e18760b0b5d9a07996aec36.jpg');
+(1, 'Extended Kalman Filter', '2019-07-02', 'asdasd', '../resources/6195abd2bb82a45a86f190cebe033b50.jpg'),
+(2, 'asd', '2019-07-02', 'asdasd', '../resources/b8136dbbebd9ddee27e28506f90fc3a6.jpg'),
+(3, 'asdasdasd', '2019-07-09', 'asdasd', '../resources/37bd065bd901efc88fb040a93b67e78e.jpg');
 
 -- --------------------------------------------------------
 
@@ -120,7 +121,8 @@ INSERT INTO `fauna` (`id`, `nama_fauna`, `spesies`, `deskripsi`, `status`, `stat
 (25, 'Kijang', 'Muntiacus', 'Kijang atau muncak adalah kerabat rusa yang tergabung dalam genus Muntiacus. Kijang berasal dari Dunia Lama dan dianggap sebagai jenis rusa tertua, telah ada sejak 15-35 juta tahun yang lalu, dengan sisa-sisa dari masa Miosen ditemukan di Prancis dan Jerman. ', 'Sudah Dilepas ke Habitat Aslinya', 'dilindungi', 'dilindungi', 'Cervidae', 'Berkelompok', 14, '../resources/8504e6eba4ead1a800598b6ed471e01c.jpg'),
 (26, 'Bajing Kelapa', 'C. notatus', 'Bajing kelapa aktif di siang hari (diurnal). Seperti namanya, bajing ini sering ditemukan berkeliaran di cabang dan ranting pohon, atau melompat di antara pelepah daun di kebun-kebun kelapa dan juga kebun-kebun lainnya.', 'Sudah Dilepas ke Habitat Aslinya', 'tidak dilindungi', 'tidak dilindungi', 'Sciuridae', 'Berkelompok', 14, '../resources/287301fc3d3ec2c19dd9468377035ba9.jpg'),
 (28, 'Kucing Hutan', 'Felis Bengalensis', 'Kucing hutan mengacu pada jenis-jenis kucing (anggota suku Felidae) yang hidup liar di hutan.', 'Masih Dalam Penangkaran', 'dilindungi', 'dilindungi', 'Felidae', 'Berkelompok', 14, '../resources/0b5b3e4125fe9f1048740d0944ba5b25.jpg'),
-(30, 'Macan', 'P. pardus', 'Macan tutul (bahasa Latin: Panthera pardus) adalah salah satu dari empat kucing besar. Hewan ini dikenal juga dengan sebutan harimau dahan karena kemampuannya memanjat. Pada mulanya, orang berpikiran bahwa macan tutul adalah hibrida dari singa dan harimau, sehingga muncul nama &quot;leopard&quot; di kalangan peneliti Eropa awal. Macan tutul jawa (P. p. melas) adalah fauna identitas Jawa Barat dan termasuk hewan yang terancam punah di Indonesia.', 'Sudah Dilepas ke Habitat Aslinya', 'dilindungi', 'dilindungi', 'Felidae', 'Solitare', 14, '../resources/ece7acd3e71985e384536c000f4129db.jpg');
+(30, 'Macan', 'P. pardus', 'Macan tutul (bahasa Latin: Panthera pardus) adalah salah satu dari empat kucing besar. Hewan ini dikenal juga dengan sebutan harimau dahan karena kemampuannya memanjat. Pada mulanya, orang berpikiran bahwa macan tutul adalah hibrida dari singa dan harimau, sehingga muncul nama &quot;leopard&quot; di kalangan peneliti Eropa awal. Macan tutul jawa (P. p. melas) adalah fauna identitas Jawa Barat dan termasuk hewan yang terancam punah di Indonesia.', 'Sudah Dilepas ke Habitat Aslinya', 'dilindungi', 'dilindungi', 'Felidae', 'Solitare', 14, '../resources/ece7acd3e71985e384536c000f4129db.jpg'),
+(37, 'asd', 'a', 'a', 'Sudah Dilepas ke Habitat Aslinya', 'dilindungi', 'dilindungi', 'asd', 'a', 10, '../resources/4b5ebb87f8bd4d9f2581dee7219af702.jpg');
 
 -- --------------------------------------------------------
 
@@ -189,7 +191,7 @@ CREATE TABLE `kematian_fauna` (
 
 INSERT INTO `kematian_fauna` (`id`, `jumlah_kematian`, `tanggal_kematian`, `alasan`, `id_penyebaran`) VALUES
 (2, 1, '2019-07-03 12:00:00', '1', 1),
-(3, 2, '2019-07-02 12:00:00', 'as', 2),
+(3, 2, '2019-07-02 12:00:00', 'asd', 2),
 (8, 2, '2019-07-25 12:00:00', '1', 1),
 (9, 2, '2019-07-25 12:00:00', '1', 1);
 
@@ -218,7 +220,10 @@ INSERT INTO `obyek_wisata` (`id`, `nama_wisata`, `lokasi`, `latitude`, `longitud
 (10, 'Suaka Margasatwa Paliyan', 'Karangduwet, Karangasem, Paliyan, Kabupaten Gunung Kidul, Daerah Istimewa Yogyakarta', -7.905778947589987, 110.88381592704272, NULL),
 (11, 'Cagar Alam Imogiri', 'Desa Wukirsari dan Desa Girirejo, Kabupaten Bantul', -7.8309463778646, 110.4295279045341, NULL),
 (16, 'asd', 'asd', -7.872422163129597, 110.32936339734118, '../resources/9a191cdf73548827f23853202d98c6c5.jpg'),
-(17, 'as', 'as', -7.744888670168829, 110.3680849418945, '../resources/f68291229c3925e15c5a80d7e3ee7124.jpg');
+(17, 'as', 'as', -7.744888670168829, 110.3680849418945, '../resources/073354b0c252c762b12b1bfc68d108f6.'),
+(20, 'a', 'a', -7.753057093034866, 110.36767849252793, '../resources/cbc50b1423e9e42374834fc6c4a12956.'),
+(21, 'aa', 'aa', -7.7605305400921125, 110.40906590760657, '../resources/73e297fceb55860051afa1c60b516ad7.'),
+(22, 'aas', 'aas', -7.751344250285288, 110.37355590836488, '../resources/ba2920e1b0d1dc0de644c5af9f73035c.jpg');
 
 -- --------------------------------------------------------
 
@@ -315,7 +320,7 @@ ALTER TABLE `penambahan_fauna`
 -- AUTO_INCREMENT for table `agenda`
 --
 ALTER TABLE `agenda`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `akun`
@@ -333,7 +338,7 @@ ALTER TABLE `detail_obyek_wisata`
 -- AUTO_INCREMENT for table `fauna`
 --
 ALTER TABLE `fauna`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `feedback`
@@ -351,19 +356,19 @@ ALTER TABLE `kategori`
 -- AUTO_INCREMENT for table `kematian_fauna`
 --
 ALTER TABLE `kematian_fauna`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `obyek_wisata`
 --
 ALTER TABLE `obyek_wisata`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `penambahan_fauna`
 --
 ALTER TABLE `penambahan_fauna`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
@@ -373,8 +378,8 @@ ALTER TABLE `penambahan_fauna`
 -- Constraints for table `detail_obyek_wisata`
 --
 ALTER TABLE `detail_obyek_wisata`
-  ADD CONSTRAINT `detail_obyek_wisata_ibfk_1` FOREIGN KEY (`id_wisata`) REFERENCES `obyek_wisata` (`id`),
-  ADD CONSTRAINT `detail_obyek_wisata_ibfk_2` FOREIGN KEY (`id_fauna`) REFERENCES `fauna` (`id`);
+  ADD CONSTRAINT `detail_obyek_wisata_ibfk_1` FOREIGN KEY (`id_wisata`) REFERENCES `obyek_wisata` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `detail_obyek_wisata_ibfk_2` FOREIGN KEY (`id_fauna`) REFERENCES `fauna` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `fauna`
@@ -386,13 +391,13 @@ ALTER TABLE `fauna`
 -- Constraints for table `kematian_fauna`
 --
 ALTER TABLE `kematian_fauna`
-  ADD CONSTRAINT `kematian_fauna_ibfk_1` FOREIGN KEY (`id_penyebaran`) REFERENCES `detail_obyek_wisata` (`id`);
+  ADD CONSTRAINT `kematian_fauna_ibfk_1` FOREIGN KEY (`id_penyebaran`) REFERENCES `detail_obyek_wisata` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `penambahan_fauna`
 --
 ALTER TABLE `penambahan_fauna`
-  ADD CONSTRAINT `penambahan_fauna_ibfk_1` FOREIGN KEY (`id_penyebaran`) REFERENCES `detail_obyek_wisata` (`id`);
+  ADD CONSTRAINT `penambahan_fauna_ibfk_1` FOREIGN KEY (`id_penyebaran`) REFERENCES `detail_obyek_wisata` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
